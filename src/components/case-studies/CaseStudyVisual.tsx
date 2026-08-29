@@ -7,49 +7,26 @@ const queueNumbers = ["A001", "A002", "A003", "A004"];
 export function CaseStudyVisual({ project }: { project: Project }) {
   if (project.visual === "screenshot" && project.screenshot) {
     const domain = project.url?.replace(/^https?:\/\//, "").replace(/\/$/, "");
-    return (
-      <a
-        className="browser tilt browser--link"
-        href={project.url}
-        target="_blank"
-        rel="noreferrer"
-      >
+    const body = (
+      <>
         <div className="browser__chrome">
           <div className="browser__dots"><span /><span /><span /></div>
-          <div className="browser__url">{domain}</div>
+          <div className="browser__url">{domain ?? "currently offline"}</div>
         </div>
         <div className="browser__body browser__body--image">
           <img src={project.screenshot} alt={`${project.name} homepage`} loading="lazy" />
         </div>
-      </a>
+      </>
     );
-  }
 
-  if (project.visual === "pos") {
+    if (!project.url) {
+      return <div className="browser tilt">{body}</div>;
+    }
+
     return (
-      <div className="browser tilt">
-        <div className="browser__chrome">
-          <div className="browser__dots"><span /><span /><span /></div>
-          <div className="browser__url">app.opnexus.dev/pos</div>
-        </div>
-        <div className="browser__body">
-          <div className="pos-mockup">
-            <div className="pos-grid">
-              {["Espresso", "Latte", "Croissant", "Bagel", "Water", "Juice"].map((item, i) => (
-                <div className={`pos-item ${i === 0 ? "is-active" : ""}`} key={item}>
-                  {item}
-                </div>
-              ))}
-            </div>
-            <div className="pos-cart">
-              <span className="eyebrow">Order #248</span>
-              <div className="pos-cart__row"><span>Espresso ×2</span><span>$8</span></div>
-              <div className="pos-cart__row"><span>Croissant ×1</span><span>$5</span></div>
-              <div className="pos-cart__total"><span>Total</span><span>$13</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <a className="browser tilt browser--link" href={project.url} target="_blank" rel="noreferrer">
+        {body}
+      </a>
     );
   }
 

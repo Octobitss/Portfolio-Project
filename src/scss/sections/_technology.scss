@@ -37,69 +37,106 @@
   gap: v.$space-2xs;
 }
 
-.architecture {
+.tech-roadmap-wrap {
   display: flex;
   flex-direction: column;
   gap: v.$space-lg;
 }
 
-.architecture__eyebrow {
+.tech-roadmap__eyebrow {
   align-self: center;
 }
 
-.architecture__flow {
+.tech-roadmap {
+  --tech-roadmap-line: #{v.$color-accent};
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: v.$space-md;
-  padding-block: v.$space-lg;
+  flex-direction: column;
+  gap: v.$space-2xl;
+  padding-block: v.$space-lg v.$space-2xl;
 
-  @include respond-down(md) {
-    flex-wrap: wrap;
-    justify-content: center;
+  @include respond-down(sm) {
+    gap: v.$space-lg;
   }
 }
 
-.architecture__line {
+.tech-roadmap__svg {
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, v.$color-accent, transparent);
-  transform: scaleX(0);
-  transform-origin: left center;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 
-  @include respond-down(md) {
+  @include respond-down(sm) {
     display: none;
   }
 }
 
-.architecture__node {
+.tech-roadmap__path {
+  stroke-width: 2px;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(v.$color-accent, 0.55));
+}
+
+.tech-roadmap__card {
   position: relative;
   z-index: 1;
+  width: min(360px, 100%);
+  @include hairline-border;
+  border-radius: v.$border-radius-md;
+  padding: v.$space-md;
+  background-color: v.$color-ink-soft;
+  background-image: linear-gradient(180deg, transparent, v.$color-accent-dim 140%);
+  transition: border-color v.$duration-base v.$ease-out-quart;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: v.$space-2xs;
-  background: v.$color-ink-soft;
-  padding: v.$space-sm v.$space-md;
+  gap: v.$space-xs;
+
+  &:hover {
+    border-color: v.$color-accent;
+  }
+
+  @include respond-down(sm) {
+    transform: none !important;
+    width: 100%;
+  }
 }
 
-.architecture__node-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: v.$color-accent;
-  box-shadow: 0 0 16px v.$color-accent;
+.tech-roadmap__card--left {
+  align-self: flex-start;
 }
 
-.architecture__node-label {
-  font-family: v.$font-mono;
-  font-size: v.$fs-xs;
-  letter-spacing: 0.08em;
+.tech-roadmap__card--right {
+  align-self: flex-end;
+}
+
+.tech-roadmap__card-title {
+  font-family: v.$font-display;
+  font-weight: 700;
+  font-size: v.$fs-md;
+  color: v.$color-paper;
   text-transform: uppercase;
+}
+
+.tech-roadmap__card-list {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-3xs;
+  margin-top: v.$space-2xs;
+}
+
+.tech-roadmap__card-list li {
+  position: relative;
+  padding-left: v.$space-sm;
+  font-size: v.$fs-sm;
   color: v.$color-paper-dim;
-  white-space: nowrap;
+
+  &::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: v.$color-accent;
+    font-family: v.$font-mono;
+  }
 }

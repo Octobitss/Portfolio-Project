@@ -14,12 +14,33 @@ export const techGroups: TechGroup[] = [
 export interface ArchitectureNode {
   id: string;
   label: string;
+  bullets: string[];
 }
 
 export const architectureFlow: ArchitectureNode[] = [
-  { id: "react", label: "React" },
-  { id: "api", label: "API" },
-  { id: "database", label: "Database" },
-  { id: "logic", label: "Business Logic" },
-  { id: "dashboard", label: "Dashboard" },
+  {
+    id: "react",
+    label: "React",
+    bullets: ["Component-driven interface", "Client-side state & routing"],
+  },
+  {
+    id: "api",
+    label: "API",
+    bullets: ["REST endpoints", "Auth & request validation"],
+  },
+  {
+    id: "database",
+    label: "Database",
+    bullets: ["Structured data storage", "Query optimization"],
+  },
+  {
+    id: "logic",
+    label: "Business Logic",
+    bullets: ["Core rules & workflows", "Server-side processing"],
+  },
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    bullets: ["Real-time reporting", "Role-based views"],
+  },
 ];

@@ -5,7 +5,7 @@ export interface Project {
   type: string;
   technology: string[];
   description: string;
-  visual: "pos" | "queue" | "screenshot";
+  visual: "queue" | "screenshot";
   url?: string;
   screenshot?: string;
 }
@@ -20,16 +20,17 @@ export const projects: Project[] = [
     description: "A team task and project management platform for organizing sprints and tracking workflow progress.",
     visual: "screenshot",
     url: "https://taskmasteropnexus.xyz/",
-    screenshot: "/portfolio/taskmaster.jpg",
+    screenshot: "/portfolio/taskmaster-dashboard.jpg",
   },
   {
     id: "pos-system",
     index: "02",
     name: "POS System",
     type: "Business Operations",
-    technology: ["React", "TypeScript", "API"],
-    description: "A point-of-sale system unifying products, cart, orders, payments, and inventory.",
-    visual: "pos",
+    technology: ["React", "Node.js", "Express", "MongoDB"],
+    description: "A multi-branch point-of-sale system covering inventory, staff, VIP customers, and real-time sales performance.",
+    visual: "screenshot",
+    screenshot: "/portfolio/pos-system.jpg",
   },
   {
     id: "queueing-system",
