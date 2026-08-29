@@ -68,12 +68,12 @@ body {
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   font-weight: 400;
   color: #f5f4f0;
-  background: #0a0b0d;
+  background: #0a0a0a;
 }
 
 h1, h2, h3, h4 {
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 500;
+  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.02em;
 }
@@ -115,7 +115,7 @@ h1, h2, h3, h4 {
   font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .mono {
@@ -123,7 +123,7 @@ h1, h2, h3, h4 {
 }
 
 .text-gradient {
-  background: linear-gradient(120deg, #f5f4f0 40%, #5ef2c0 100%);
+  background: linear-gradient(120deg, #f5f4f0 40%, #ffd60a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -140,13 +140,13 @@ h1, h2, h3, h4 {
 }
 
 ::-moz-selection {
-  background: #5ef2c0;
-  color: #0a0b0d;
+  background: #ffd60a;
+  color: #0a0a0a;
 }
 
 ::selection {
-  background: #5ef2c0;
-  color: #0a0b0d;
+  background: #ffd60a;
+  color: #0a0a0a;
 }
 
 ::-webkit-scrollbar {
@@ -154,12 +154,12 @@ h1, h2, h3, h4 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0b0d;
+  background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a1b20;
-  border: 2px solid #0a0b0d;
+  background: #1c1c1c;
+  border: 2px solid #0a0a0a;
   border-radius: 999px;
 }
 
@@ -172,6 +172,7 @@ h1, h2, h3, h4 {
 
 .section {
   position: relative;
+  scroll-margin-top: 96px;
   padding-block: clamp(5rem, 10vw, 9rem);
 }
 
@@ -197,7 +198,7 @@ h1, h2, h3, h4 {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 1px solid #5ef2c0;
+  outline: 1px solid #ffd60a;
   outline-offset: 4px;
 }
 
@@ -214,6 +215,7 @@ button:focus-visible {
   font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  white-space: nowrap;
   padding: 1.1em 1.8em;
   border-radius: 999px;
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -225,12 +227,12 @@ button:focus-visible {
 
 .btn--primary {
   background: #f5f4f0;
-  color: #0a0b0d;
+  color: #0a0a0a;
   border: 1px solid #f5f4f0;
 }
 .btn--primary:hover {
-  background: #5ef2c0;
-  border-color: #5ef2c0;
+  background: #ffd60a;
+  border-color: #ffd60a;
 }
 
 .btn--ghost {
@@ -239,8 +241,8 @@ button:focus-visible {
   border: 1px solid rgba(245, 244, 240, 0.24);
 }
 .btn--ghost:hover {
-  border-color: #5ef2c0;
-  color: #5ef2c0;
+  border-color: #ffd60a;
+  color: #ffd60a;
 }
 
 .btn--block {
@@ -274,8 +276,8 @@ button:focus-visible {
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .link-arrow:hover {
-  color: #5ef2c0;
-  border-color: #5ef2c0;
+  color: #ffd60a;
+  border-color: #ffd60a;
 }
 .link-arrow:hover svg {
   transform: translateX(4px);
@@ -305,14 +307,15 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
   font-size: clamp(0.875rem, 0.83rem + 0.2vw, 1rem);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   z-index: 2;
 }
 .nav__logo span {
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .nav__links {
@@ -343,17 +346,20 @@ button:focus-visible {
   bottom: 0;
   height: 1px;
   width: 100%;
-  background: #5ef2c0;
+  background: #ffd60a;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.nav__link:hover {
+.nav__link:hover, .nav__link.is-active {
   color: #f5f4f0;
 }
-.nav__link:hover::after {
+.nav__link:hover::after, .nav__link.is-active::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+.nav__link.is-active {
+  color: #ffd60a;
 }
 
 .nav__actions {
@@ -405,7 +411,7 @@ button:focus-visible {
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: #0a0b0d;
+  background: #0a0a0a;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -419,19 +425,24 @@ button:focus-visible {
 }
 
 .nav__mobile-link {
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
   font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
   text-transform: uppercase;
   color: #f5f4f0;
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.nav__mobile-link.is-active {
+  color: #ffd60a;
 }
 
 .nav__mobile-link--accent {
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .card, .metric-card {
   position: relative;
-  background: #121317;
+  background: #131313;
   border: 1px solid rgba(245, 244, 240, 0.12);
   border-radius: 8px;
   padding: 2.5rem;
@@ -449,7 +460,7 @@ button:focus-visible {
 }
 
 .metric-card__value {
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
   line-height: 1;
   display: flex;
@@ -459,16 +470,12 @@ button:focus-visible {
 
 .metric-card__value .unit {
   font-size: 0.4em;
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .metric-card__label {
   font-size: clamp(0.875rem, 0.83rem + 0.2vw, 1rem);
   color: rgba(245, 244, 240, 0.64);
-}
-
-.metric-card--placeholder .metric-card__value {
-  color: rgba(245, 244, 240, 0.4);
 }
 
 .tag {
@@ -485,8 +492,8 @@ button:focus-visible {
 }
 
 .tag--accent {
-  border-color: #5ef2c0;
-  color: #5ef2c0;
+  border-color: #ffd60a;
+  color: #ffd60a;
 }
 
 .index-number {
@@ -497,7 +504,7 @@ button:focus-visible {
 
 .browser {
   position: relative;
-  background: #121317;
+  background: #131313;
   border: 1px solid rgba(245, 244, 240, 0.24);
   border-radius: 16px;
   overflow: hidden;
@@ -540,6 +547,20 @@ button:focus-visible {
   min-height: 320px;
 }
 
+.browser--link {
+  display: block;
+}
+
+.browser__body--image {
+  padding: 0;
+  min-height: 0;
+  line-height: 0;
+}
+.browser__body--image img {
+  width: 100%;
+  display: block;
+}
+
 .ui-panel {
   position: absolute;
   display: flex;
@@ -561,8 +582,8 @@ button:focus-visible {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #5ef2c0;
-  box-shadow: 0 0 12px #5ef2c0;
+  background: #ffd60a;
+  box-shadow: 0 0 12px #ffd60a;
 }
 
 .pos-mockup {
@@ -592,8 +613,8 @@ button:focus-visible {
   transition: border-color 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .pos-item.is-active {
-  border-color: #5ef2c0;
-  background: rgba(94, 242, 192, 0.16);
+  border-color: #ffd60a;
+  background: rgba(255, 214, 10, 0.16);
   color: #f5f4f0;
 }
 
@@ -652,22 +673,7 @@ button:focus-visible {
   padding: 0.75rem;
   font-size: clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);
   color: rgba(245, 244, 240, 0.64);
-  background: #0a0b0d;
-}
-
-.ticket-board {
-  position: relative;
-  padding-top: 64px;
-}
-
-.ticket-board__floating {
-  position: absolute;
-  top: 0;
-  width: calc(33.3333333333% - 0.75rem);
-  border-color: #5ef2c0;
-  background: rgba(94, 242, 192, 0.16);
-  color: #f5f4f0;
-  transition: left 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+  background: #0a0a0a;
 }
 
 .queue-display {
@@ -683,11 +689,11 @@ button:focus-visible {
   font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .queue-display__number {
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(3rem, 2.2rem + 3.5vw, 5.5rem);
   line-height: 1;
 }
@@ -716,9 +722,9 @@ button:focus-visible {
   color: rgba(245, 244, 240, 0.64);
 }
 .queue-chip.is-current {
-  border-color: #5ef2c0;
-  color: #0a0b0d;
-  background: #5ef2c0;
+  border-color: #ffd60a;
+  color: #0a0a0a;
+  background: #ffd60a;
 }
 
 .magnetic {
@@ -744,7 +750,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: radial-gradient(ellipse at 50% 20%, rgba(94, 242, 192, 0.08), transparent 60%), #0a0b0d;
+  background: radial-gradient(ellipse at 50% 20%, rgba(94, 242, 192, 0.08), transparent 60%), #0a0a0a;
 }
 
 .hero__grid {
@@ -815,11 +821,11 @@ button:focus-visible {
   font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .hero__headline {
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   line-height: 0.98;
@@ -856,7 +862,7 @@ button:focus-visible {
 .hero__scroll-line {
   width: 1px;
   height: 32px;
-  background: linear-gradient(to bottom, #5ef2c0, transparent);
+  background: linear-gradient(to bottom, #ffd60a, transparent);
   animation: hero-scroll-line 2s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -882,28 +888,6 @@ button:focus-visible {
     opacity: 0.4;
   }
 }
-.results {
-  background: #0a0b0d;
-  border-top: 1px solid rgba(245, 244, 240, 0.12);
-}
-
-.results__inner {
-  display: flex;
-  flex-direction: column;
-  gap: 6rem;
-}
-
-.results__intro {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 720px;
-}
-
-.results__statement {
-  color: rgba(245, 244, 240, 0.64);
-}
-
 .results__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -915,17 +899,13 @@ button:focus-visible {
   }
 }
 
-.results__card-wrap {
-  height: 100%;
-}
-
 .services {
   position: relative;
   height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
-  background: #0a0b0d;
+  background: #0a0a0a;
 }
 @media (prefers-reduced-motion: reduce) {
   .services {
@@ -987,7 +967,7 @@ button:focus-visible {
   transition: color 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .services__dot.is-active {
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .services__stage {
@@ -1077,13 +1057,13 @@ button:focus-visible {
   border: 1px solid rgba(245, 244, 240, 0.12);
   border-radius: 8px;
   padding: 1rem 1.5rem;
-  background: #121317;
+  background: #131313;
 }
 
 .flow-diagram__index {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .flow-diagram__label {
@@ -1103,7 +1083,7 @@ button:focus-visible {
 }
 
 .technology {
-  background: #121317;
+  background: #131313;
   border-top: 1px solid rgba(245, 244, 240, 0.12);
   border-bottom: 1px solid rgba(245, 244, 240, 0.12);
 }
@@ -1170,7 +1150,7 @@ button:focus-visible {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, #5ef2c0, transparent);
+  background: linear-gradient(to right, transparent, #ffd60a, transparent);
   transform: scaleX(0);
   transform-origin: left center;
 }
@@ -1187,7 +1167,7 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  background: #121317;
+  background: #131313;
   padding: 1rem 1.5rem;
 }
 
@@ -1195,8 +1175,8 @@ button:focus-visible {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #5ef2c0;
-  box-shadow: 0 0 16px #5ef2c0;
+  background: #ffd60a;
+  box-shadow: 0 0 16px #ffd60a;
 }
 
 .architecture__node-label {
@@ -1259,8 +1239,71 @@ button:focus-visible {
   min-width: 0;
 }
 
+.shopify-portfolio__title {
+  margin-bottom: 1rem;
+}
+
+.shopify-portfolio__lead {
+  max-width: 640px;
+  margin-bottom: 6rem;
+}
+
+.shopify-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .shopify-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1080px) {
+  .shopify-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.shopify-card-wrap {
+  height: 100%;
+}
+
+.shopify-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.shopify-card__image {
+  line-height: 0;
+  border-bottom: 1px solid rgba(245, 244, 240, 0.12);
+}
+.shopify-card__image img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: top;
+  object-position: top;
+  display: block;
+}
+
+.shopify-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.5rem;
+}
+
+.shopify-card__name {
+  text-transform: none;
+}
+
 .product-tours {
-  background: #0a0b0d;
+  background: #0a0a0a;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -1298,9 +1341,9 @@ button:focus-visible {
   transition: border-color 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .product-tours__tab.is-active {
-  background: #5ef2c0;
-  border-color: #5ef2c0;
-  color: #0a0b0d;
+  background: #ffd60a;
+  border-color: #ffd60a;
+  color: #0a0a0a;
 }
 
 .product-tours__stage {
@@ -1340,7 +1383,7 @@ button:focus-visible {
 }
 .tour-cursor {
   position: absolute;
-  color: #5ef2c0;
+  color: #ffd60a;
   filter: drop-shadow(0 0 8px rgba(94, 242, 192, 0.6));
   transition: top 0.7s cubic-bezier(0.76, 0, 0.24, 1), left 0.7s cubic-bezier(0.76, 0, 0.24, 1);
   pointer-events: none;
@@ -1367,7 +1410,7 @@ button:focus-visible {
 }
 .product-tours__step.is-active {
   opacity: 1;
-  background: #121317;
+  background: #131313;
 }
 
 .product-tours__step-label {
@@ -1379,7 +1422,7 @@ button:focus-visible {
 }
 
 .process {
-  background: #121317;
+  background: #131313;
   border-top: 1px solid rgba(245, 244, 240, 0.12);
 }
 
@@ -1407,7 +1450,7 @@ button:focus-visible {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #5ef2c0;
+  background: #ffd60a;
   transform: scaleY(0);
   transform-origin: top;
 }
@@ -1428,7 +1471,7 @@ button:focus-visible {
   opacity: 1;
 }
 .process__step.is-active .process__step-index {
-  color: #5ef2c0;
+  color: #ffd60a;
   transform: scale(1.15);
 }
 
@@ -1458,7 +1501,7 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0a0b0d;
+  background: #0a0a0a;
   border-top: 1px solid rgba(245, 244, 240, 0.12);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1544,7 +1587,7 @@ button:focus-visible {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   font-size: clamp(0.875rem, 0.83rem + 0.2vw, 1rem);
   letter-spacing: 0.08em;
-  color: #5ef2c0;
+  color: #ffd60a;
   border: 1px solid rgba(245, 244, 240, 0.12);
   border-radius: 999px;
   padding: 0.6em 1.4em;
@@ -1558,7 +1601,7 @@ button:focus-visible {
 }
 
 .investment {
-  background: #121317;
+  background: #131313;
   border-top: 1px solid rgba(245, 244, 240, 0.12);
 }
 
@@ -1591,7 +1634,7 @@ button:focus-visible {
 .investment__tab.is-active {
   background: #f5f4f0;
   border-color: #f5f4f0;
-  color: #0a0b0d;
+  color: #0a0a0a;
 }
 
 .investment__panel {
@@ -1648,9 +1691,9 @@ button:focus-visible {
 }
 
 .pricing-card__range {
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .pricing-card__addon {
@@ -1683,11 +1726,11 @@ button:focus-visible {
   border: 1px solid rgba(245, 244, 240, 0.12);
   border-radius: 8px;
   padding: 2.5rem 1.5rem;
-  background: #0a0b0d;
+  background: #0a0a0a;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .maintenance-card.is-selected {
-  border-color: #5ef2c0;
+  border-color: #ffd60a;
   transform: translateY(-8px) scale(1.03);
 }
 .maintenance-card.is-dimmed {
@@ -1695,7 +1738,7 @@ button:focus-visible {
 }
 
 .maintenance-card__price {
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
 }
 .maintenance-card__price .unit {
@@ -1716,7 +1759,7 @@ button:focus-visible {
   gap: 0.5rem;
 }
 .maintenance-card__list svg {
-  color: #5ef2c0;
+  color: #ffd60a;
   flex-shrink: 0;
 }
 
@@ -1727,7 +1770,7 @@ button:focus-visible {
   border: 1px solid rgba(245, 244, 240, 0.12);
   border-radius: 16px;
   padding: 4rem;
-  background: #0a0b0d;
+  background: #0a0a0a;
 }
 
 .estimator__step {
@@ -1761,9 +1804,9 @@ button:focus-visible {
   transition: border-color 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .estimator__option.is-active {
-  background: rgba(94, 242, 192, 0.16);
-  border-color: #5ef2c0;
-  color: #5ef2c0;
+  background: rgba(255, 214, 10, 0.16);
+  border-color: #ffd60a;
+  color: #ffd60a;
 }
 
 .estimator__option-price {
@@ -1780,7 +1823,7 @@ button:focus-visible {
 }
 
 .estimator__total {
-  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
   color: #f5f4f0;
 }
@@ -1803,6 +1846,31 @@ button:focus-visible {
 
 .investment__estimator-title {
   text-transform: none;
+}
+
+.investment__custom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-top: 6rem;
+  padding: 2.5rem;
+  border: 1px solid rgba(245, 244, 240, 0.12);
+  border-radius: 16px;
+  background: #0a0a0a;
+}
+@media (min-width: 860px) {
+  .investment__custom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+}
+
+.investment__custom-title {
+  text-transform: none;
+  margin-bottom: 0.5rem;
 }
 
 .cta {
@@ -1843,7 +1911,7 @@ button:focus-visible {
 }
 
 .footer {
-  background: #0a0b0d;
+  background: #0a0a0a;
   border-top: 1px solid rgba(245, 244, 240, 0.12);
   padding-block: 6rem 2.5rem;
 }
@@ -1885,7 +1953,7 @@ button:focus-visible {
   width: fit-content;
 }
 .footer__link:hover {
-  color: #5ef2c0;
+  color: #ffd60a;
 }
 
 .footer__bottom {

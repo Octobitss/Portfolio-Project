@@ -1,9 +1,9 @@
 {
-  "name": "sass-systems",
+  "name": "opnexus",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "SASS Systems — premium interactive portfolio for a software development studio.",
+  "description": "OPNexus — premium interactive portfolio for a software development studio.",
   "scripts": {
     "dev": "vite",
     "build": "gulp build && tsc --noEmit && vite build",

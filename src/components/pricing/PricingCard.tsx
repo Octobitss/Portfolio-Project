@@ -1,4 +1,4 @@
-import { formatPHPRange, type PricingTier } from "../../data/pricing";
+import { formatUSDRange, type PricingTier } from "../../data/pricing";
 import { ScrollReveal } from "../../animations/ScrollReveal";
 
 export function PricingCard({ tier, index }: { tier: PricingTier; index: number }) {
@@ -10,9 +10,9 @@ export function PricingCard({ tier, index }: { tier: PricingTier; index: number 
           <span className="tag">{tier.estimate} {tier.estimateUnit}</span>
         </div>
         <p className="text-body">{tier.description}</p>
-        <div className="pricing-card__range">{formatPHPRange(tier.baseMin, tier.baseMax)}</div>
+        <div className="pricing-card__range">{formatUSDRange(tier.baseMin, tier.baseMax)}</div>
         <div className="pricing-card__addon">
-          + {formatPHPRange(tier.addOnMin, tier.addOnMax)} for additional customization
+          + {formatUSDRange(tier.addOnMin, tier.addOnMax)} for additional customization
         </div>
       </div>
     </ScrollReveal>

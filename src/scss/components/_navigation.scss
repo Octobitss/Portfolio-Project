@@ -29,6 +29,7 @@
   align-items: center;
   gap: v.$space-2xs;
   font-family: v.$font-display;
+  font-weight: 700;
   font-size: v.$fs-sm;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -72,13 +73,18 @@
     transition: transform v.$duration-base v.$ease-out-expo;
   }
 
-  &:hover {
+  &:hover,
+  &.is-active {
     color: v.$color-paper;
 
     &::after {
       transform: scaleX(1);
       transform-origin: left;
     }
+  }
+
+  &.is-active {
+    color: v.$color-accent;
   }
 }
 
@@ -147,9 +153,15 @@
 
 .nav__mobile-link {
   font-family: v.$font-display;
+  font-weight: 700;
   font-size: v.$fs-lg;
   text-transform: uppercase;
   color: v.$color-paper;
+  transition: color v.$duration-fast v.$ease-out-quart;
+
+  &.is-active {
+    color: v.$color-accent;
+  }
 }
 
 .nav__mobile-link--accent {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
-import { maintenancePlans, formatPHP } from "../../data/pricing";
+import { maintenancePlans, formatUSD } from "../../data/pricing";
 
 export function MaintenanceComparison() {
   const [selected, setSelected] = useState(maintenancePlans[2].id);
@@ -16,7 +16,7 @@ export function MaintenanceComparison() {
         >
           <span className="eyebrow">{plan.name}</span>
           <span className="maintenance-card__price">
-            {formatPHP(plan.price)}
+            {formatUSD(plan.price)}
             <span className="unit">/mo</span>
           </span>
           <ul className="maintenance-card__list">

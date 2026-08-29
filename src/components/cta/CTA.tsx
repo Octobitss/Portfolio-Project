@@ -2,6 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 import { TextReveal } from "../../animations/TextReveal";
 import { ScrollReveal } from "../../animations/ScrollReveal";
 import { MagneticButton } from "../../animations/MagneticButton";
+import { trackEvent } from "../../lib/analytics";
 
 export function CTA() {
   return (
@@ -21,7 +22,11 @@ export function CTA() {
         </ScrollReveal>
         <ScrollReveal delay={0.25} className="btn-group cta__actions">
           <MagneticButton>
-            <a href="mailto:hello@sasssystems.dev" className="btn btn--primary">
+            <a
+              href="mailto:king.op.nexus@gmail.com"
+              className="btn btn--primary"
+              onClick={() => trackEvent("cta_click", { location: "cta_section" })}
+            >
               Start a Project
               <ArrowUpRight />
             </a>

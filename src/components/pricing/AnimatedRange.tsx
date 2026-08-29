@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "../../lib/gsap";
 import { useMotionPrefs } from "../../lib/SmoothScrollProvider";
-import { formatPHP } from "../../data/pricing";
+import { formatUSD } from "../../data/pricing";
 
 export function AnimatedRange({ min, max, className }: { min: number; max: number; className?: string }) {
   const minRef = useRef<HTMLSpanElement>(null);
@@ -15,8 +15,8 @@ export function AnimatedRange({ min, max, className }: { min: number; max: numbe
     if (!minEl || !maxEl) return;
 
     if (reducedMotion) {
-      minEl.textContent = formatPHP(min);
-      maxEl.textContent = formatPHP(max);
+      minEl.textContent = formatUSD(min);
+      maxEl.textContent = formatUSD(max);
       stateRef.current = { min, max };
       return;
     }
@@ -28,8 +28,8 @@ export function AnimatedRange({ min, max, className }: { min: number; max: numbe
       duration: 0.7,
       ease: "power2.out",
       onUpdate: () => {
-        minEl.textContent = formatPHP(proxy.min);
-        maxEl.textContent = formatPHP(proxy.max);
+        minEl.textContent = formatUSD(proxy.min);
+        maxEl.textContent = formatUSD(proxy.max);
       },
       onComplete: () => {
         stateRef.current = { min, max };
@@ -39,9 +39,9 @@ export function AnimatedRange({ min, max, className }: { min: number; max: numbe
 
   return (
     <span className={className}>
-      <span ref={minRef}>{formatPHP(min)}</span>
+      <span ref={minRef}>{formatUSD(min)}</span>
       {" – "}
-      <span ref={maxRef}>{formatPHP(max)}</span>
+      <span ref={maxRef}>{formatUSD(max)}</span>
     </span>
   );
 }

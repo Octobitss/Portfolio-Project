@@ -58,13 +58,13 @@ function PosStep({ step }: { step: number }) {
       <div className="pos-cart">
         <span className="eyebrow">Order #319</span>
         {step >= 1 ? (
-          <div className="pos-cart__row"><span>Espresso ×1</span><span>₱120</span></div>
+          <div className="pos-cart__row"><span>Espresso ×1</span><span>$4</span></div>
         ) : (
           <span className="text-body">Cart is empty</span>
         )}
         {step >= 2 && (
           <>
-            <div className="pos-cart__total"><span>Total</span><span>₱120</span></div>
+            <div className="pos-cart__total"><span>Total</span><span>$4</span></div>
             <span className="tag tag--accent"><Check size={12} /> Payment captured</span>
           </>
         )}
@@ -118,10 +118,10 @@ function ShopifyStep({ step }: { step: number }) {
       </div>
       <div className="pos-cart">
         <span className="eyebrow">{step === 0 ? "Product" : step === 1 ? "Cart" : "Checkout"}</span>
-        {step >= 1 && <div className="pos-cart__row"><span>Jacket ×1</span><span>₱2,400</span></div>}
+        {step >= 1 && <div className="pos-cart__row"><span>Jacket ×1</span><span>$120</span></div>}
         {step >= 2 && (
           <>
-            <div className="pos-cart__total"><span>Total</span><span>₱2,400</span></div>
+            <div className="pos-cart__total"><span>Total</span><span>$120</span></div>
             <span className="tag tag--accent"><Check size={12} /> Order confirmed</span>
           </>
         )}

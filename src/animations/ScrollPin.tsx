@@ -5,11 +5,9 @@ import { useMotionPrefs } from "../lib/SmoothScrollProvider";
 interface ScrollPinProps {
   children: ReactNode;
   className?: string;
-  /** viewport-heights of scroll distance to hold the pin for */
   lengthVh?: number;
 }
 
-/** Pins its contents in place for a span of scroll distance, then releases. */
 export function ScrollPin({ children, className, lengthVh = 150 }: ScrollPinProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { reducedMotion } = useMotionPrefs();

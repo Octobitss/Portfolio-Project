@@ -3,11 +3,15 @@ import { ArrowUpRight } from "lucide-react";
 import { navLinks } from "../../data/nav";
 import { MagneticButton } from "../../animations/MagneticButton";
 import { gsap } from "../../lib/gsap";
+import { useMotionPrefs } from "../../lib/SmoothScrollProvider";
+import { trackEvent } from "../../lib/analytics";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState<string | null>(null);
   const mobileRef = useRef<HTMLDivElement>(null);
+  const { lenis, reducedMotion } = useMotionPrefs();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -30,16 +34,55 @@ export function Navigation() {
     }
   }, [open]);
 
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.querySelector<HTMLElement>(link.href))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (!visible.length) return;
+        const topMost = visible.reduce((a, b) =>
+          a.boundingClientRect.top <= b.boundingClientRect.top ? a : b
+        );
+        setActiveHref(`#${topMost.target.id}`);
+      },
+      { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const target = document.querySelector<HTMLElement>(href);
+    if (!target) return;
+    event.preventDefault();
+    setOpen(false);
+    if (lenis && !reducedMotion) {
+      lenis.scrollTo(target, { duration: 1.3 });
+    } else {
+      target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+    }
+  };
+
   return (
     <>
       <header className={`nav ${scrolled ? "is-scrolled" : ""}`}>
-        <a href="#top" className="nav__logo">
-          SASS<span>.</span>SYSTEMS
+        <a href="#top" className="nav__logo" onClick={(e) => handleNavClick(e, "#top")}>
+          OP<span>.</span>NEXUS
         </a>
 
         <nav className="nav__links">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav__link">
+            <a
+              key={link.href}
+              href={link.href}
+              className={`nav__link ${activeHref === link.href ? "is-active" : ""}`}
+              onClick={(e) => handleNavClick(e, link.href)}
+            >
               {link.label}
             </a>
           ))}
@@ -47,7 +90,14 @@ export function Navigation() {
 
         <div className="nav__actions">
           <MagneticButton className="nav__cta">
-            <a href="#cta" className="btn btn--primary">
+            <a
+              href="#cta"
+              className="btn btn--primary"
+              onClick={(e) => {
+                handleNavClick(e, "#cta");
+                trackEvent("cta_click", { location: "nav" });
+              }}
+            >
               Start a Project
               <ArrowUpRight />
             </a>
@@ -71,8 +121,8 @@ export function Navigation() {
             <a
               key={link.href}
               href={link.href}
-              className="nav__mobile-link"
-              onClick={() => setOpen(false)}
+              className={`nav__mobile-link ${activeHref === link.href ? "is-active" : ""}`}
+              onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.label}
             </a>
@@ -80,7 +130,7 @@ export function Navigation() {
           <a
             href="#cta"
             className="nav__mobile-link nav__mobile-link--accent"
-            onClick={() => setOpen(false)}
+            onClick={(e) => handleNavClick(e, "#cta")}
           >
             Start a Project
           </a>

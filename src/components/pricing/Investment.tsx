@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { reactPricing, shopifyPricing, customSystemTierIds } from "../../data/pricing";
 import { TextReveal } from "../../animations/TextReveal";
 import { PricingCard } from "./PricingCard";
 import { MaintenanceComparison } from "./MaintenanceComparison";
 import { Estimator } from "./Estimator";
+import { trackEvent } from "../../lib/analytics";
 
 type Tab = "shopify" | "react" | "custom" | "maintenance";
 
@@ -60,6 +62,25 @@ export function Investment() {
         <div className="investment__estimator">
           <h3 className="h-2 investment__estimator-title">Build Your Estimate</h3>
           <Estimator />
+        </div>
+
+        <div className="investment__custom">
+          <div>
+            <h3 className="h-3 investment__custom-title">None of these numbers fit?</h3>
+            <p className="text-body">
+              Every business is different — if the estimate doesn't match your budget or your
+              project doesn't fit a standard tier, tell us what you're building and we'll price
+              it directly.
+            </p>
+          </div>
+          <a
+            href="mailto:king.op.nexus@gmail.com?subject=Custom%20Project%20Inquiry"
+            className="btn btn--ghost"
+            onClick={() => trackEvent("cta_click", { location: "investment_custom_quote" })}
+          >
+            Request a Custom Quote
+            <ArrowUpRight />
+          </a>
         </div>
       </div>
     </section>

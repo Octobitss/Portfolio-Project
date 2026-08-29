@@ -5,18 +5,22 @@ export interface Project {
   type: string;
   technology: string[];
   description: string;
-  visual: "shopify" | "pos" | "tickets" | "queue";
+  visual: "pos" | "queue" | "screenshot";
+  url?: string;
+  screenshot?: string;
 }
 
 export const projects: Project[] = [
   {
-    id: "commerce-platform",
+    id: "task-master",
     index: "01",
-    name: "Shopify Commerce Platform",
-    type: "Ecommerce",
-    technology: ["Shopify", "Liquid", "JavaScript", "SCSS"],
-    description: "A custom Shopify storefront built for conversion, speed, and merchandising control.",
-    visual: "shopify",
+    name: "Task Master",
+    type: "React System",
+    technology: ["React", "TypeScript", "REST API"],
+    description: "A team task and project management platform for organizing sprints and tracking workflow progress.",
+    visual: "screenshot",
+    url: "https://taskmasteropnexus.xyz/",
+    screenshot: "/portfolio/taskmaster.jpg",
   },
   {
     id: "pos-system",
@@ -28,17 +32,8 @@ export const projects: Project[] = [
     visual: "pos",
   },
   {
-    id: "issue-tracker",
-    index: "03",
-    name: "Issue Tracking System",
-    type: "Internal Operations",
-    technology: ["React", "TypeScript", "REST API"],
-    description: "A ticketing workflow built around priority, status, assignee, and activity history.",
-    visual: "tickets",
-  },
-  {
     id: "queueing-system",
-    index: "04",
+    index: "03",
     name: "Queueing System",
     type: "Customer Experience",
     technology: ["React", "API", "Real-time updates"],

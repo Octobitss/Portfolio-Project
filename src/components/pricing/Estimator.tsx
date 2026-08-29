@@ -6,7 +6,7 @@ import {
   calculateEstimate,
   type BuildTrack,
 } from "../../data/estimator";
-import { formatPHP } from "../../data/pricing";
+import { formatUSD } from "../../data/pricing";
 import { AnimatedRange } from "./AnimatedRange";
 
 export function Estimator() {
@@ -65,7 +65,7 @@ export function Estimator() {
               onClick={() => toggleRequirement(req.id)}
             >
               {req.name}
-              <span className="estimator__option-price">+{formatPHP(req.price)}</span>
+              <span className="estimator__option-price">+{formatUSD(req.price)}</span>
             </button>
           ))}
         </div>

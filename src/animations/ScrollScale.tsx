@@ -8,11 +8,9 @@ interface ScrollScaleProps {
   style?: CSSProperties;
   from?: number;
   to?: number;
-  /** when true, scale is scrubbed continuously across the element's transit; otherwise plays once on enter */
   scrub?: boolean;
 }
 
-/** Scales an element from `from` to `to`, driven by scroll position. */
 export function ScrollScale({
   children,
   className,

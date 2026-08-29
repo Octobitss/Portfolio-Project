@@ -14,10 +14,6 @@ interface TextRevealProps {
   scrub?: boolean;
 }
 
-/**
- * Editorial line-by-line reveal: each line sits in an overflow-hidden mask
- * and translates up from below on scroll — no typing effects.
- */
 export function TextReveal({
   lines,
   className,

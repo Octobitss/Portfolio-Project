@@ -8,7 +8,6 @@ interface MagneticButtonProps {
   strength?: number;
 }
 
-/** Subtly pulls its contents toward the cursor on hover — desktop pointer only. */
 export function MagneticButton({ children, className, strength = 0.35 }: MagneticButtonProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);

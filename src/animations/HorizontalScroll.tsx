@@ -8,7 +8,6 @@ interface HorizontalScrollProps {
   trackClassName?: string;
 }
 
-/** Pins the viewport and translates its track horizontally as the page scrolls vertically. */
 export function HorizontalScroll({ children, className, trackClassName }: HorizontalScrollProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);

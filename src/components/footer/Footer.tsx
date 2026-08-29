@@ -6,9 +6,12 @@ export function Footer() {
       <div className="container footer__inner">
         <div className="footer__brand">
           <span className="nav__logo">
-            SASS<span>.</span>SYSTEMS
+            OP<span>.</span>NEXUS
           </span>
           <p className="text-body footer__tagline">We build the systems behind modern business.</p>
+          <a href="mailto:king.op.nexus@gmail.com" className="footer__link">
+            king.op.nexus@gmail.com
+          </a>
         </div>
 
         <nav className="footer__col">
@@ -31,7 +34,7 @@ export function Footer() {
       </div>
 
       <div className="container footer__bottom">
-        <span>© {new Date().getFullYear()} SASS Systems.</span>
+        <span>© {new Date().getFullYear()} OPNexus.</span>
         <span>Designed &amp; engineered in-house.</span>
       </div>
     </footer>

@@ -98,7 +98,6 @@
   color: v.$color-paper-faint;
 }
 
-// ---- maintenance ----
 .maintenance-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -164,7 +163,6 @@
   }
 }
 
-// ---- estimator ----
 .estimator {
   display: flex;
   flex-direction: column;
@@ -251,4 +249,28 @@
 
 .investment__estimator-title {
   text-transform: none;
+}
+
+.investment__custom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: v.$space-md;
+  margin-top: v.$space-2xl;
+  padding: v.$space-lg;
+  @include hairline-border;
+  border-radius: v.$border-radius-lg;
+  background: v.$color-ink;
+
+  @include respond-up(md) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$space-xl;
+  }
+}
+
+.investment__custom-title {
+  text-transform: none;
+  margin-bottom: v.$space-2xs;
 }

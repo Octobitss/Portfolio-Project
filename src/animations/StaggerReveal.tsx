@@ -9,11 +9,9 @@ interface StaggerRevealProps {
   y?: number;
   stagger?: number;
   start?: string;
-  /** css selector (relative to the wrapper) for which children to animate; defaults to direct children */
   targets?: string;
 }
 
-/** Reveals the direct children of the wrapper in a staggered sequence. */
 export function StaggerReveal({
   children,
   className,

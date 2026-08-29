@@ -26,6 +26,7 @@
 
 .section {
   position: relative;
+  scroll-margin-top: 96px;
   @include section-padding;
 }
 
@@ -55,7 +56,6 @@ button {
   @include focus-ring;
 }
 
-// global lag-safe defaults
 [data-animate] {
   will-change: transform, opacity;
 }

@@ -10,6 +10,7 @@
   font-size: v.$fs-xs;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  white-space: nowrap;
   padding: 1.1em 1.8em;
   border-radius: 999px;
   transition: transform v.$duration-fast v.$ease-out-quart,

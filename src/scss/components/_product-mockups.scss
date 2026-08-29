@@ -47,7 +47,21 @@
   min-height: 320px;
 }
 
-// ---- panel: generic UI node used in hero constellation & architecture ----
+.browser--link {
+  display: block;
+}
+
+.browser__body--image {
+  padding: 0;
+  min-height: 0;
+  line-height: 0;
+
+  img {
+    width: 100%;
+    display: block;
+  }
+}
+
 .ui-panel {
   position: absolute;
   display: flex;
@@ -74,7 +88,6 @@
   }
 }
 
-// ---- POS mockup ----
 .pos-mockup {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -134,7 +147,6 @@
   font-weight: 600;
 }
 
-// ---- Kanban / issue tracker mockup ----
 .kanban {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -166,22 +178,6 @@
   background: v.$color-ink;
 }
 
-.ticket-board {
-  position: relative;
-  padding-top: 64px;
-}
-
-.ticket-board__floating {
-  position: absolute;
-  top: 0;
-  width: calc(100% / 3 - #{v.$space-xs});
-  border-color: v.$color-accent;
-  background: v.$color-accent-dim;
-  color: v.$color-paper;
-  transition: left 0.9s v.$ease-in-out-quart;
-}
-
-// ---- Queue display ----
 .queue-display {
   display: flex;
   flex-direction: column;

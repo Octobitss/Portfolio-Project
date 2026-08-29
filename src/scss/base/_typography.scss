@@ -11,7 +11,7 @@ body {
 
 h1, h2, h3, h4 {
   font-family: v.$font-display;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.02em;
 }
@@ -63,7 +63,6 @@ h1, h2, h3, h4 {
   color: transparent;
 }
 
-// split-line / word reveal helpers used by TextReveal
 .reveal-line {
   overflow: hidden;
   display: block;

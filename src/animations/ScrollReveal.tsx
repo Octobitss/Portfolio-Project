@@ -15,7 +15,6 @@ interface ScrollRevealProps {
   once?: boolean;
 }
 
-/** Fades + translates an element in as it crosses into the viewport. */
 export function ScrollReveal({
   children,
   className,

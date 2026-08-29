@@ -6,12 +6,10 @@ interface ScrollParallaxProps {
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
-  /** positive = moves down slower than scroll (background), negative = faster (foreground) */
   speed?: number;
   axis?: "x" | "y";
 }
 
-/** Moves an element at a fraction of scroll speed for a depth/parallax effect. */
 export function ScrollParallax({
   children,
   className,

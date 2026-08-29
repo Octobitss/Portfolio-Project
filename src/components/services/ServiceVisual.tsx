@@ -9,7 +9,7 @@ export function ServiceVisual({ variant }: { variant: "shopify" | "react" | "cus
       <div className="browser tilt">
         <div className="browser__chrome">
           <div className="browser__dots"><span /><span /><span /></div>
-          <div className="browser__url">shop.sasssystems.dev</div>
+          <div className="browser__url">shop.opnexus.dev</div>
         </div>
         <div className="browser__body">
           <div className="pos-grid">
@@ -32,7 +32,7 @@ export function ServiceVisual({ variant }: { variant: "shopify" | "react" | "cus
       <div className="browser tilt">
         <div className="browser__chrome">
           <div className="browser__dots"><span /><span /><span /></div>
-          <div className="browser__url">app.sasssystems.dev/admin</div>
+          <div className="browser__url">app.opnexus.dev/admin</div>
         </div>
         <div className="browser__body">
           <div className="results__grid" style={{ gridTemplateColumns: "repeat(3, 1fr)", marginBottom: 20 }}>
@@ -81,7 +81,7 @@ export function ServiceVisual({ variant }: { variant: "shopify" | "react" | "cus
     <div className="browser tilt">
       <div className="browser__chrome">
         <div className="browser__dots"><span /><span /><span /></div>
-        <div className="browser__url">queue.sasssystems.dev</div>
+        <div className="browser__url">queue.opnexus.dev</div>
       </div>
       <div className="browser__body">
         <div className="queue-display">
