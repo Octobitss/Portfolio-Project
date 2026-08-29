@@ -1,0 +1,181 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.services {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: v.$color-ink;
+
+  @include reduced-motion {
+    height: auto;
+    overflow: visible;
+  }
+}
+
+.services__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(circle, rgba(94, 242, 192, 0.16), transparent 65%);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.services__frame {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xl;
+  height: 100%;
+  padding-block: v.$space-xl;
+
+  @include reduced-motion {
+    height: auto;
+  }
+}
+
+.services__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+}
+
+.services__index {
+  display: flex;
+  gap: v.$space-md;
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+
+  @include reduced-motion {
+    display: none;
+  }
+}
+
+.services__dot {
+  color: v.$color-paper-faint;
+  transition: color v.$duration-base v.$ease-out-quart;
+
+  &.is-active {
+    color: v.$color-accent;
+  }
+}
+
+.services__stage {
+  position: relative;
+  flex: 1;
+
+  @include reduced-motion {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-3xl;
+  }
+}
+
+.services__slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: v.$space-xl;
+
+  @include respond-down(lg) {
+    grid-template-columns: 1fr;
+    align-content: center;
+  }
+
+  @include reduced-motion {
+    position: static;
+    opacity: 1 !important;
+    transform: none !important;
+    padding-block: v.$space-lg;
+    border-bottom: 1px solid v.$color-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.services__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: v.$space-sm;
+  width: 100%;
+  min-width: 0;
+}
+
+.services__name {
+  text-transform: none;
+}
+
+.services__stack {
+  margin-top: v.$space-xs;
+}
+
+.services__visual {
+  position: relative;
+  height: 100%;
+  min-height: 320px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include respond-down(lg) {
+    min-height: 260px;
+  }
+}
+
+// ---- custom-systems workflow diagram, reused inside the services stage ----
+.flow-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+  width: 100%;
+  max-width: min(380px, 100%);
+}
+
+.flow-diagram__step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: v.$space-sm;
+  @include hairline-border;
+  border-radius: v.$border-radius-md;
+  padding: v.$space-sm v.$space-md;
+  background: v.$color-ink-soft;
+}
+
+.flow-diagram__index {
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  color: v.$color-accent;
+}
+
+.flow-diagram__label {
+  font-family: v.$font-mono;
+  font-size: v.$fs-sm;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.flow-diagram__arrow {
+  position: absolute;
+  left: v.$space-lg;
+  bottom: -14px;
+  width: 1px;
+  height: 12px;
+  background: v.$color-border-strong;
+}

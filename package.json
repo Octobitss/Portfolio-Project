@@ -1,0 +1,39 @@
+{
+  "name": "sass-systems",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SASS Systems — premium interactive portfolio for a software development studio.",
+  "scripts": {
+    "dev": "vite",
+    "build": "gulp build && tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit",
+    "scss:watch": "gulp watch",
+    "scss:build": "gulp build"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.1",
+    "gsap": "^3.12.7",
+    "lenis": "^1.1.20",
+    "lucide-react": "^0.462.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "gulp": "^5.0.0",
+    "gulp-autoprefixer": "^9.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "sass": "^1.81.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}

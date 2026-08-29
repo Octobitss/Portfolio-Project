@@ -1,0 +1,76 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.process {
+  background: v.$color-ink-soft;
+  border-top: 1px solid v.$color-border;
+}
+
+.process__title {
+  margin-bottom: v.$space-2xl;
+}
+
+.process__timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: v.$space-lg;
+}
+
+.process__line-track {
+  position: relative;
+  width: 1px;
+  background: v.$color-border;
+  justify-self: center;
+}
+
+.process__line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: v.$color-accent;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.process__steps {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2xl;
+}
+
+.process__step {
+  display: flex;
+  gap: v.$space-lg;
+  opacity: 0.35;
+  transition: opacity v.$duration-slow v.$ease-out-quart;
+
+  &.is-active {
+    opacity: 1;
+
+    .process__step-index {
+      color: v.$color-accent;
+      transform: scale(1.15);
+    }
+  }
+}
+
+.process__step-index {
+  font-family: v.$font-mono;
+  font-size: v.$fs-md;
+  color: v.$color-paper-faint;
+  transition: color v.$duration-base v.$ease-out-quart, transform v.$duration-base v.$ease-out-quart;
+}
+
+.process__step-body {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2xs;
+  max-width: 60ch;
+}
+
+.process__step-name {
+  text-transform: uppercase;
+}

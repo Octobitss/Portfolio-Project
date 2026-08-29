@@ -1,0 +1,105 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.technology {
+  background: v.$color-ink-soft;
+  border-top: 1px solid v.$color-border;
+  border-bottom: 1px solid v.$color-border;
+}
+
+.technology__header {
+  margin-bottom: v.$space-xl;
+}
+
+.technology__groups {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: v.$space-md;
+  margin-bottom: v.$space-3xl;
+
+  @include respond-up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.technology__group {
+  @include hairline-border;
+  border-radius: v.$border-radius-md;
+  padding: v.$space-md;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+}
+
+.technology__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-2xs;
+}
+
+.architecture {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-lg;
+}
+
+.architecture__eyebrow {
+  align-self: center;
+}
+
+.architecture__flow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$space-md;
+  padding-block: v.$space-lg;
+
+  @include respond-down(md) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.architecture__line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, v.$color-accent, transparent);
+  transform: scaleX(0);
+  transform-origin: left center;
+
+  @include respond-down(md) {
+    display: none;
+  }
+}
+
+.architecture__node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: v.$space-2xs;
+  background: v.$color-ink-soft;
+  padding: v.$space-sm v.$space-md;
+}
+
+.architecture__node-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: v.$color-accent;
+  box-shadow: 0 0 16px v.$color-accent;
+}
+
+.architecture__node-label {
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: v.$color-paper-dim;
+  white-space: nowrap;
+}

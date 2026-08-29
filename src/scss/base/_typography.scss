@@ -1,0 +1,75 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+body {
+  font-family: v.$font-body;
+  font-size: v.$fs-base;
+  font-weight: 400;
+  color: v.$color-paper;
+  background: v.$color-ink;
+}
+
+h1, h2, h3, h4 {
+  font-family: v.$font-display;
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+.h-display {
+  font-size: v.$fs-3xl;
+  text-transform: uppercase;
+}
+
+.h-1 {
+  font-size: v.$fs-2xl;
+  text-transform: uppercase;
+}
+
+.h-2 {
+  font-size: v.$fs-xl;
+  text-transform: uppercase;
+}
+
+.h-3 {
+  font-size: v.$fs-lg;
+}
+
+.text-lead {
+  font-size: v.$fs-md;
+  font-weight: 400;
+  line-height: 1.4;
+  color: v.$color-paper-dim;
+}
+
+.text-body {
+  font-size: v.$fs-base;
+  color: v.$color-paper-dim;
+  line-height: 1.6;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.mono {
+  font-family: v.$font-mono;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, v.$color-paper 40%, v.$color-accent 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+// split-line / word reveal helpers used by TextReveal
+.reveal-line {
+  overflow: hidden;
+  display: block;
+}
+
+.reveal-line__inner {
+  display: block;
+  will-change: transform;
+}

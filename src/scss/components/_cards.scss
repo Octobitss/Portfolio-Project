@@ -1,0 +1,70 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.card {
+  position: relative;
+  background: v.$color-ink-soft;
+  @include hairline-border;
+  border-radius: v.$border-radius-md;
+  padding: v.$space-lg;
+  transition: border-color v.$duration-base v.$ease-out-quart,
+    transform v.$duration-base v.$ease-out-quart;
+}
+
+.card--interactive:hover {
+  border-color: v.$color-border-strong;
+}
+
+.metric-card {
+  @extend .card;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+}
+
+.metric-card__value {
+  font-family: v.$font-display;
+  font-size: v.$fs-xl;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.15em;
+}
+
+.metric-card__value .unit {
+  font-size: 0.4em;
+  color: v.$color-accent;
+}
+
+.metric-card__label {
+  font-size: v.$fs-sm;
+  color: v.$color-paper-dim;
+}
+
+.metric-card--placeholder .metric-card__value {
+  color: v.$color-paper-faint;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: v.$font-mono;
+  font-size: v.$fs-2xs;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4em 0.8em;
+  border-radius: 999px;
+  border: 1px solid v.$color-border-strong;
+  color: v.$color-paper-dim;
+}
+
+.tag--accent {
+  border-color: v.$color-accent;
+  color: v.$color-accent;
+}
+
+.index-number {
+  font-family: v.$font-mono;
+  font-size: v.$fs-sm;
+  color: v.$color-paper-faint;
+}

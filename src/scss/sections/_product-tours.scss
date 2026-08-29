@@ -1,0 +1,117 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.product-tours {
+  background: v.$color-ink;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.product-tours__frame {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xl;
+}
+
+.product-tours__header {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-md;
+  align-items: flex-start;
+}
+
+.product-tours__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-2xs;
+}
+
+.product-tours__tab {
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.7em 1.3em;
+  border-radius: 999px;
+  border: 1px solid v.$color-border-strong;
+  color: v.$color-paper-dim;
+  transition: border-color v.$duration-fast v.$ease-out-quart, color v.$duration-fast v.$ease-out-quart,
+    background-color v.$duration-fast v.$ease-out-quart;
+
+  &.is-active {
+    background: v.$color-accent;
+    border-color: v.$color-accent;
+    color: v.$color-ink;
+  }
+}
+
+.product-tours__stage {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: v.$space-xl;
+  align-items: center;
+
+  @include respond-down(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-tours__browser {
+  min-height: 380px;
+}
+
+.tour-visual {
+  position: relative;
+  height: 100%;
+}
+
+.tour-visual__frame {
+  animation: tour-step-in 0.5s v.$ease-out-quart both;
+}
+
+@keyframes tour-step-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tour-cursor {
+  position: absolute;
+  color: v.$color-accent;
+  filter: drop-shadow(0 0 8px rgba(94, 242, 192, 0.6));
+  transition: top 0.7s v.$ease-in-out-quart, left 0.7s v.$ease-in-out-quart;
+  pointer-events: none;
+
+  @include reduced-motion {
+    display: none;
+  }
+}
+
+.product-tours__steps {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+}
+
+.product-tours__step {
+  display: flex;
+  gap: v.$space-sm;
+  padding: v.$space-sm;
+  border-radius: v.$border-radius-md;
+  opacity: 0.45;
+  transition: opacity v.$duration-base v.$ease-out-quart, background-color v.$duration-base v.$ease-out-quart;
+
+  &.is-active {
+    opacity: 1;
+    background: v.$color-ink-soft;
+  }
+}
+
+.product-tours__step-label {
+  font-family: v.$font-mono;
+  font-size: v.$fs-sm;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}

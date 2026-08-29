@@ -1,0 +1,14 @@
+@use "sass:math";
+
+// Convert px to rem assuming 16px root
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+// Fluid clamp helper: fluid($min-px, $max-px, $min-vw: 420, $max-vw: 1600)
+@function fluid($min, $max, $min-vw: 420, $max-vw: 1600) {
+  $slope: math.div($max - $min, $max-vw - $min-vw);
+  $intercept: $min - $slope * $min-vw;
+  $slope-vw: $slope * 100;
+  @return clamp(#{rem($min)}, #{rem($intercept)} + #{$slope-vw}vw, #{rem($max)});
+}

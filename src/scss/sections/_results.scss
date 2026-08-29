@@ -1,0 +1,38 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.results {
+  background: v.$color-ink;
+  border-top: 1px solid v.$color-border;
+}
+
+.results__inner {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2xl;
+}
+
+.results__intro {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-md;
+  max-width: 720px;
+}
+
+.results__statement {
+  color: v.$color-paper-dim;
+}
+
+.results__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: v.$space-md;
+
+  @include respond-up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.results__card-wrap {
+  height: 100%;
+}

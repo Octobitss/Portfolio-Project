@@ -1,0 +1,69 @@
+@use "variables" as v;
+
+@mixin respond-up($bp) {
+  @if $bp == xs {
+    @media (min-width: v.$bp-xs) { @content; }
+  } @else if $bp == sm {
+    @media (min-width: v.$bp-sm) { @content; }
+  } @else if $bp == md {
+    @media (min-width: v.$bp-md) { @content; }
+  } @else if $bp == lg {
+    @media (min-width: v.$bp-lg) { @content; }
+  } @else if $bp == xl {
+    @media (min-width: v.$bp-xl) { @content; }
+  } @else if $bp == 2xl {
+    @media (min-width: v.$bp-2xl) { @content; }
+  }
+}
+
+@mixin respond-down($bp) {
+  @if $bp == xs {
+    @media (max-width: (v.$bp-xs - 1)) { @content; }
+  } @else if $bp == sm {
+    @media (max-width: (v.$bp-sm - 1)) { @content; }
+  } @else if $bp == md {
+    @media (max-width: (v.$bp-md - 1)) { @content; }
+  } @else if $bp == lg {
+    @media (max-width: (v.$bp-lg - 1)) { @content; }
+  } @else if $bp == xl {
+    @media (max-width: (v.$bp-xl - 1)) { @content; }
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: v.$container-width;
+  margin-inline: auto;
+  padding-inline: v.$container-padding;
+}
+
+@mixin section-padding {
+  padding-block: v.$section-padding-y;
+}
+
+@mixin eyebrow {
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: v.$color-accent;
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 1px solid v.$color-accent;
+    outline-offset: 4px;
+  }
+}
+
+@mixin hairline-border($side: all) {
+  @if $side == all {
+    border: 1px solid v.$color-border;
+  } @else {
+    border-#{$side}: 1px solid v.$color-border;
+  }
+}

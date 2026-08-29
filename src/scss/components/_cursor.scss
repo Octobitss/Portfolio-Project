@@ -1,0 +1,17 @@
+@use "../abstracts/variables" as v;
+
+.magnetic {
+  display: inline-flex;
+  will-change: transform;
+}
+
+.magnetic__inner {
+  display: inline-flex;
+  will-change: transform;
+}
+
+// subtle tilt target for product mockups
+.tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+}

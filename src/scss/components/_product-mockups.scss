@@ -1,0 +1,231 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.browser {
+  position: relative;
+  background: v.$color-ink-soft;
+  border: 1px solid v.$color-border-strong;
+  border-radius: v.$border-radius-lg;
+  overflow: hidden;
+  box-shadow: 0 40px 120px -40px rgba(0, 0, 0, 0.7);
+}
+
+.browser__chrome {
+  display: flex;
+  align-items: center;
+  gap: v.$space-sm;
+  padding: v.$space-sm v.$space-md;
+  border-bottom: 1px solid v.$color-border;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.browser__dots {
+  display: flex;
+  gap: 6px;
+
+  span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: v.$color-border-strong;
+  }
+}
+
+.browser__url {
+  flex: 1;
+  font-family: v.$font-mono;
+  font-size: v.$fs-2xs;
+  color: v.$color-paper-faint;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 999px;
+  padding: 0.35em 1em;
+}
+
+.browser__body {
+  position: relative;
+  padding: v.$space-lg;
+  min-height: 320px;
+}
+
+// ---- panel: generic UI node used in hero constellation & architecture ----
+.ui-panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: v.$space-sm v.$space-md;
+  background: rgba(26, 27, 32, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid v.$color-border-strong;
+  border-radius: v.$border-radius-md;
+  font-family: v.$font-mono;
+  font-size: v.$fs-2xs;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: v.$color-paper-dim;
+  white-space: nowrap;
+
+  .ui-panel__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: v.$color-accent;
+    box-shadow: 0 0 12px v.$color-accent;
+  }
+}
+
+// ---- POS mockup ----
+.pos-mockup {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: v.$space-md;
+  height: 100%;
+
+  @include respond-down(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: v.$space-xs;
+}
+
+.pos-item {
+  @include hairline-border;
+  border-radius: v.$border-radius-sm;
+  padding: v.$space-sm;
+  font-size: v.$fs-2xs;
+  color: v.$color-paper-dim;
+  transition: border-color v.$duration-fast v.$ease-out-quart, background-color v.$duration-fast v.$ease-out-quart;
+
+  &.is-active {
+    border-color: v.$color-accent;
+    background: v.$color-accent-dim;
+    color: v.$color-paper;
+  }
+}
+
+.pos-cart {
+  @include hairline-border;
+  border-radius: v.$border-radius-sm;
+  padding: v.$space-sm;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2xs;
+  font-family: v.$font-mono;
+  font-size: v.$fs-2xs;
+}
+
+.pos-cart__row {
+  display: flex;
+  justify-content: space-between;
+  color: v.$color-paper-dim;
+}
+
+.pos-cart__total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: v.$space-2xs;
+  margin-top: v.$space-2xs;
+  border-top: 1px solid v.$color-border;
+  color: v.$color-paper;
+  font-weight: 600;
+}
+
+// ---- Kanban / issue tracker mockup ----
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: v.$space-sm;
+}
+
+.kanban__col {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2xs;
+}
+
+.kanban__col-title {
+  font-family: v.$font-mono;
+  font-size: v.$fs-2xs;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: v.$color-paper-faint;
+  padding-bottom: v.$space-2xs;
+  border-bottom: 1px solid v.$color-border;
+}
+
+.kanban__card {
+  @include hairline-border;
+  border-radius: v.$border-radius-sm;
+  padding: v.$space-xs;
+  font-size: v.$fs-2xs;
+  color: v.$color-paper-dim;
+  background: v.$color-ink;
+}
+
+.ticket-board {
+  position: relative;
+  padding-top: 64px;
+}
+
+.ticket-board__floating {
+  position: absolute;
+  top: 0;
+  width: calc(100% / 3 - #{v.$space-xs});
+  border-color: v.$color-accent;
+  background: v.$color-accent-dim;
+  color: v.$color-paper;
+  transition: left 0.9s v.$ease-in-out-quart;
+}
+
+// ---- Queue display ----
+.queue-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: v.$space-md;
+  text-align: center;
+}
+
+.queue-display__label {
+  @include eyebrow;
+}
+
+.queue-display__number {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  line-height: 1;
+}
+
+.queue-display__meta {
+  display: flex;
+  gap: v.$space-lg;
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  color: v.$color-paper-dim;
+}
+
+.queue-list {
+  display: flex;
+  gap: v.$space-xs;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.queue-chip {
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  padding: 0.5em 0.9em;
+  border-radius: 999px;
+  border: 1px solid v.$color-border-strong;
+  color: v.$color-paper-dim;
+
+  &.is-current {
+    border-color: v.$color-accent;
+    color: v.$color-ink;
+    background: v.$color-accent;
+  }
+}

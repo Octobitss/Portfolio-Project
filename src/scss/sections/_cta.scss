@@ -1,0 +1,39 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.cta {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-top: 1px solid v.$color-border;
+}
+
+.cta__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  height: 80vw;
+  max-width: 1100px;
+  max-height: 1100px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(94, 242, 192, 0.14), transparent 65%);
+  pointer-events: none;
+}
+
+.cta__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: v.$space-lg;
+}
+
+.cta__lead {
+  max-width: 56ch;
+}
+
+.cta__actions {
+  justify-content: center;
+}

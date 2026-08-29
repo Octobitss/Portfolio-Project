@@ -1,0 +1,87 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-2xs;
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1.1em 1.8em;
+  border-radius: 999px;
+  transition: transform v.$duration-fast v.$ease-out-quart,
+    background-color v.$duration-fast v.$ease-out-quart,
+    color v.$duration-fast v.$ease-out-quart,
+    border-color v.$duration-fast v.$ease-out-quart;
+
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.btn--primary {
+  background: v.$color-paper;
+  color: v.$color-ink;
+  border: 1px solid v.$color-paper;
+
+  &:hover {
+    background: v.$color-accent;
+    border-color: v.$color-accent;
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  color: v.$color-paper;
+  border: 1px solid v.$color-border-strong;
+
+  &:hover {
+    border-color: v.$color-accent;
+    color: v.$color-accent;
+  }
+}
+
+.btn--block {
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-sm;
+  max-width: 100%;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-2xs;
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: v.$color-paper;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid v.$color-border-strong;
+  transition: border-color v.$duration-fast v.$ease-out-quart, color v.$duration-fast v.$ease-out-quart;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    transition: transform v.$duration-fast v.$ease-out-quart;
+  }
+
+  &:hover {
+    color: v.$color-accent;
+    border-color: v.$color-accent;
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+}
