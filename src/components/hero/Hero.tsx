@@ -17,14 +17,14 @@ interface HeroPanel {
 }
 
 const panels: HeroPanel[] = [
-  { id: "shopify", label: "SHOPIFY", top: "15%", left: "5%", exitX: -160, exitY: -70, exitRotate: -8 },
-  { id: "react", label: "REACT", top: "18%", left: "91%", exitX: 170, exitY: -50, exitRotate: 9 },
-  { id: "api", label: "API", top: "12%", left: "30%", exitX: 10, exitY: -170, exitRotate: 3 },
-  { id: "queue", label: "QUEUE", top: "46%", left: "3%", exitX: -220, exitY: 20, exitRotate: -6 },
-  { id: "admin", label: "ADMIN", top: "46%", left: "94%", exitX: 210, exitY: 30, exitRotate: 8 },
-  { id: "pos", label: "POS", top: "83%", left: "8%", exitX: -180, exitY: 100, exitRotate: -12 },
-  { id: "database", label: "DATABASE", top: "91%", left: "30%", exitX: -20, exitY: 170, exitRotate: -4 },
-  { id: "ticketing", label: "TICKETING", top: "83%", left: "91%", exitX: 160, exitY: 110, exitRotate: 13 },
+  { id: "shopify", label: "SHOPIFY", top: "25%", left: "17%", exitX: -160, exitY: -70, exitRotate: -8 },
+  { id: "react", label: "REACT", top: "18%", left: "75%", exitX: 170, exitY: -50, exitRotate: 9 },
+  { id: "api", label: "API", top: "14%", left: "30%", exitX: 10, exitY: -170, exitRotate: 3 },
+  { id: "queue", label: "QUEUE", top: "50%", left: "10%", exitX: -220, exitY: 20, exitRotate: -6 },
+  { id: "admin", label: "ADMIN", top: "46%", left: "85%", exitX: 210, exitY: 30, exitRotate: 8 },
+  { id: "pos", label: "POS", top: "75%", left: "19%", exitX: -180, exitY: 100, exitRotate: -12 },
+  { id: "database", label: "DATABASE", top: "87%", left: "35%", exitX: -20, exitY: 170, exitRotate: -4 },
+  { id: "ticketing", label: "TICKETING", top: "83%", left: "75%", exitX: 160, exitY: 110, exitRotate: 13 },
 ];
 
 export function Hero() {
