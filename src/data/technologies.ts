@@ -6,9 +6,9 @@ export interface TechGroup {
 
 export const techGroups: TechGroup[] = [
   { id: "frontend", label: "Frontend", items: ["React", "TypeScript", "JavaScript", "HTML", "CSS", "SCSS"] },
-  { id: "commerce", label: "Commerce", items: ["Shopify", "Shopify Liquid", "Shopify Markets"] },
+  { id: "commerce", label: "Commerce", items: ["Shopify", "Shopify Liquid", "Shopify Markets", "SEO"] },
   { id: "backend", label: "Backend / Infrastructure", items: ["Node.js", "REST APIs", "AWS", "Cloud Infrastructure"] },
-  { id: "tooling", label: "Development", items: ["Git", "GitHub", "VS Code", "Shopify CLI"] },
+  { id: "tooling", label: "Development", items: ["Figma", "Git", "GitHub", "VS Code", "Shopify CLI"] },
 ];
 
 export interface ArchitectureNode {

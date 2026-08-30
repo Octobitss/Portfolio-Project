@@ -90,7 +90,11 @@ export function Services() {
 
   return (
     <section className="section services" ref={sectionRef} id="services">
-      <div className="services__glow" ref={glowRef} />
+      <div className="services__glow" ref={glowRef}>
+        {reducedMotion && (
+          <img src="/brand/opnexus-mark.webp" alt="" aria-hidden="true" className="services__glow-mark" />
+        )}
+      </div>
       <div className="container services__frame">
         <div className="services__header">
           <span className="eyebrow">What We Build</span>

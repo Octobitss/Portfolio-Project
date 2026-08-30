@@ -29,7 +29,7 @@
   align-items: center;
   gap: v.$space-2xs;
   font-family: v.$font-display;
-  font-weight: 700;
+  font-weight: 300;
   font-size: v.$fs-sm;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -38,6 +38,13 @@
   span {
     color: v.$color-accent;
   }
+}
+
+.nav__logo-mark {
+  height: 20%;
+  max-width: 20%; 
+  width: auto;
+  display: block;
 }
 
 .nav__links {
@@ -153,7 +160,7 @@
 
 .nav__mobile-link {
   font-family: v.$font-display;
-  font-weight: 700;
+  font-weight: 300;
   font-size: v.$fs-lg;
   text-transform: uppercase;
   color: v.$color-paper;

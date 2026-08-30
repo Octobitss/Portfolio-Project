@@ -10,8 +10,8 @@ $color-accent: #ffd60a;
 $color-accent-dim: rgba(255, 214, 10, 0.16);
 $color-danger: #ff6a4d;
 
-$font-display: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-$font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+$font-display: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+$font-body: "Arvo", ui-serif, Georgia, serif;
 $font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
 $fs-2xs: clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);

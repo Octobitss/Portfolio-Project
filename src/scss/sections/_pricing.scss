@@ -88,6 +88,7 @@
 
 .pricing-card__range {
   font-family: v.$font-display;
+  font-weight: 300;
   font-size: v.$fs-md;
   color: v.$color-accent;
 }
@@ -136,6 +137,7 @@
 
 .maintenance-card__price {
   font-family: v.$font-display;
+  font-weight: 300;
   font-size: v.$fs-lg;
 
   .unit {
@@ -227,6 +229,7 @@
 
 .estimator__total {
   font-family: v.$font-display;
+  font-weight: 300;
   font-size: v.$fs-xl;
   color: v.$color-paper;
 }

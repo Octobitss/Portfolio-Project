@@ -16,6 +16,5 @@ export const footerServiceLinks: NavLink[] = [
   { label: "Shopify", href: "#services" },
   { label: "React", href: "#services" },
   { label: "Custom Systems", href: "#services" },
-  { label: "Ticketing", href: "#services" },
-  { label: "Queueing", href: "#services" },
+  { label: "Ticketing & Queueing", href: "#services" },
 ];

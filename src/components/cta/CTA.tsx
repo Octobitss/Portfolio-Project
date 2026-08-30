@@ -3,6 +3,7 @@ import { TextReveal } from "../../animations/TextReveal";
 import { ScrollReveal } from "../../animations/ScrollReveal";
 import { MagneticButton } from "../../animations/MagneticButton";
 import { trackEvent } from "../../lib/analytics";
+import { gmailComposeUrl } from "../../lib/email";
 
 export function CTA() {
   return (
@@ -23,7 +24,9 @@ export function CTA() {
         <ScrollReveal delay={0.25} className="btn-group cta__actions">
           <MagneticButton>
             <a
-              href="mailto:king.op.nexus@gmail.com"
+              href={gmailComposeUrl("Start a Project")}
+              target="_blank"
+              rel="noreferrer"
               className="btn btn--primary"
               onClick={() => trackEvent("cta_click", { location: "cta_section" })}
             >

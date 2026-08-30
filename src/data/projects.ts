@@ -37,7 +37,7 @@ export const projects: Project[] = [
     index: "03",
     name: "Queueing System",
     type: "Customer Experience",
-    technology: ["React", "API", "Real-time updates"],
+    technology: ["React", "API", "Real-time updates", "Firebase", "C#", "Java"],
     description: "A live queue management system spanning customer-facing displays and staff controls.",
     visual: "queue",
   },

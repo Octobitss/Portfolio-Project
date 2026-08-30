@@ -38,6 +38,7 @@
 
 .shopify-card__image {
   line-height: 0;
+  overflow: hidden;
   border-bottom: 1px solid v.$color-border;
 
   img {
@@ -46,7 +47,12 @@
     object-fit: cover;
     object-position: top;
     display: block;
+    transition: transform v.$duration-slow v.$ease-out-quart;
   }
+}
+
+.shopify-card:hover .shopify-card__image img {
+  transform: scale(1.08);
 }
 
 .shopify-card__body {

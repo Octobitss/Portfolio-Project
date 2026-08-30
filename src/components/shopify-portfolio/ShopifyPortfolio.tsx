@@ -9,7 +9,8 @@ export function ShopifyPortfolio() {
       <div className="container">
         <TextReveal as="h2" className="h-1 shopify-portfolio__title" lines={["SHOPIFY STORES WE'VE BUILT"]} />
         <p className="text-lead shopify-portfolio__lead">
-          A sample of live storefronts running on Shopify themes and customizations we built.
+          Real Shopify storefronts we've designed, built, and optimized for online, in-store, and
+          B2B commerce.
         </p>
 
         <div className="shopify-grid">

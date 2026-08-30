@@ -15,8 +15,8 @@ export const services: Service[] = [
     name: "Shopify Stores",
     headline: "Commerce, engineered.",
     description:
-      "Commerce experiences engineered for conversion, performance, and scale.",
-    stack: ["Shopify", "Liquid", "JavaScript", "SCSS", "Shopify Markets", "Custom Sections"],
+      "We design, build, and optimize unified Shopify commerce across online, in-store, and B2B channels.",
+    stack: ["Shopify", "Liquid", "JavaScript", "SCSS", "Shopify Markets", "Custom Sections", "Figma", "SEO"],
     visual: "shopify",
   },
   {
@@ -25,7 +25,7 @@ export const services: Service[] = [
     name: "React Systems",
     headline: "Software that fits the team.",
     description: "Business software designed around the way your team actually works.",
-    stack: ["React", "JavaScript", "REST APIs", "Node.js", "SPRINGBOOT", "POSTGRESQL"],
+    stack: ["React", "JavaScript", "REST APIs", "Node.js", "SPRINGBOOT", "POSTGRESQL", "Figma", "GitHub"],
     visual: "react",
   },
   {

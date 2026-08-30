@@ -15,6 +15,10 @@
   display: grid;
   grid-template-columns: 40px 1fr;
   gap: v.$space-lg;
+
+  @include respond-up(lg) {
+    grid-template-columns: 40px minmax(0, 1fr) 340px;
+  }
 }
 
 .process__line-track {
@@ -73,4 +77,72 @@
 
 .process__step-name {
   text-transform: uppercase;
+}
+
+.process__visual {
+  display: none;
+
+  @include respond-up(lg) {
+    display: block;
+  }
+}
+
+.process__visual-sticky {
+  position: relative;
+  width: 340px;
+  height: 360px;
+}
+
+.process__visual-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: v.$space-md;
+  overflow: hidden;
+  @include hairline-border;
+  border-radius: v.$border-radius-lg;
+  background: v.$color-ink;
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity v.$duration-slow v.$ease-out-quart, transform v.$duration-slow v.$ease-out-quart;
+
+  &.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.process__visual-number {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: v.$font-display;
+  font-weight: 300;
+  font-size: 11rem;
+  line-height: 1;
+  color: v.$color-accent-dim;
+  z-index: 0;
+}
+
+.process__visual-icon {
+  position: relative;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  color: v.$color-accent;
+}
+
+.process__visual-label {
+  position: relative;
+  z-index: 1;
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: v.$color-paper-dim;
 }

@@ -58,6 +58,28 @@
   50% { transform: translateY(-14px); }
 }
 
+.brand-travel-logo {
+  position: absolute;
+  top: calc(100vh * 0.68);
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  z-index: 0;
+  width: 110px;
+  height: auto;
+  opacity: 0.16;
+  pointer-events: none;
+  display: none;
+
+  @include respond-up(sm) {
+    display: block;
+  }
+
+  @include respond-up(lg) {
+    width: 150px;
+  }
+}
+
 .hero__content {
   position: relative;
   z-index: 2;
@@ -76,7 +98,7 @@
 
 .hero__headline {
   font-family: v.$font-display;
-  font-weight: 500;
+  font-weight: 200;
   text-transform: uppercase;
   line-height: 0.98;
   letter-spacing: -0.02em;

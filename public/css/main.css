@@ -64,7 +64,7 @@ ol {
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Arvo", ui-serif, Georgia, serif;
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   font-weight: 400;
   color: #f5f4f0;
@@ -72,8 +72,8 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 700;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 200;
   line-height: 0.98;
   letter-spacing: -0.02em;
 }
@@ -307,8 +307,8 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 700;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 300;
   font-size: clamp(0.875rem, 0.83rem + 0.2vw, 1rem);
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -316,6 +316,13 @@ button:focus-visible {
 }
 .nav__logo span {
   color: #ffd60a;
+}
+
+.nav__logo-mark {
+  height: 20%;
+  max-width: 20%;
+  width: auto;
+  display: block;
 }
 
 .nav__links {
@@ -425,8 +432,8 @@ button:focus-visible {
 }
 
 .nav__mobile-link {
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 700;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 300;
   font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
   text-transform: uppercase;
   color: #f5f4f0;
@@ -460,7 +467,8 @@ button:focus-visible {
 }
 
 .metric-card__value {
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 300;
   font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
   line-height: 1;
   display: flex;
@@ -481,6 +489,8 @@ button:focus-visible {
 .tag {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   font-size: clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);
   letter-spacing: 0.08em;
@@ -694,7 +704,8 @@ button:focus-visible {
 }
 
 .queue-display__number {
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 300;
   font-size: clamp(3rem, 2.2rem + 3.5vw, 5.5rem);
   line-height: 1;
 }
@@ -805,6 +816,30 @@ button:focus-visible {
     transform: translateY(-14px);
   }
 }
+.brand-travel-logo {
+  position: absolute;
+  top: 68vh;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  z-index: 0;
+  width: 110px;
+  height: auto;
+  opacity: 0.16;
+  pointer-events: none;
+  display: none;
+}
+@media (min-width: 640px) {
+  .brand-travel-logo {
+    display: block;
+  }
+}
+@media (min-width: 1080px) {
+  .brand-travel-logo {
+    width: 150px;
+  }
+}
+
 .hero__content {
   position: relative;
   z-index: 2;
@@ -826,8 +861,8 @@ button:focus-visible {
 }
 
 .hero__headline {
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 500;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 200;
   text-transform: uppercase;
   line-height: 0.98;
   letter-spacing: -0.02em;
@@ -923,10 +958,24 @@ button:focus-visible {
   height: 60vw;
   max-width: 900px;
   max-height: 900px;
-  background: radial-gradient(circle, rgba(254, 255, 11, 0.14), transparent 65%);
-  filter: blur(10px);
   pointer-events: none;
   z-index: 0;
+}
+.services__glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(254, 255, 11, 0.14), transparent 65%);
+  filter: blur(10px);
+}
+
+.services__glow-mark {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 40%;
+  height: auto;
+  opacity: 0.4;
 }
 
 .services__frame {
@@ -1197,8 +1246,8 @@ button:focus-visible {
 }
 
 .tech-roadmap__card-title {
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 700;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 300;
   font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
   color: #f5f4f0;
   text-transform: uppercase;
@@ -1315,6 +1364,7 @@ button:focus-visible {
 
 .shopify-card__image {
   line-height: 0;
+  overflow: hidden;
   border-bottom: 1px solid rgba(245, 244, 240, 0.12);
 }
 .shopify-card__image img {
@@ -1325,6 +1375,11 @@ button:focus-visible {
   -o-object-position: top;
   object-position: top;
   display: block;
+  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.shopify-card:hover .shopify-card__image img {
+  transform: scale(1.08);
 }
 
 .shopify-card__body {
@@ -1473,6 +1528,11 @@ button:focus-visible {
   grid-template-columns: 40px 1fr;
   gap: 2.5rem;
 }
+@media (min-width: 1080px) {
+  .process__timeline {
+    grid-template-columns: 40px minmax(0, 1fr) 340px;
+  }
+}
 
 .process__line-track {
   position: relative;
@@ -1528,6 +1588,74 @@ button:focus-visible {
 
 .process__step-name {
   text-transform: uppercase;
+}
+
+.process__visual {
+  display: none;
+}
+@media (min-width: 1080px) {
+  .process__visual {
+    display: block;
+  }
+}
+
+.process__visual-sticky {
+  position: relative;
+  width: 340px;
+  height: 360px;
+}
+
+.process__visual-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(245, 244, 240, 0.12);
+  border-radius: 16px;
+  background: #0a0a0a;
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.process__visual-frame.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.process__visual-number {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 300;
+  font-size: 11rem;
+  line-height: 1;
+  color: rgba(255, 214, 10, 0.16);
+  z-index: 0;
+}
+
+.process__visual-icon {
+  position: relative;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  color: #ffd60a;
+}
+
+.process__visual-label {
+  position: relative;
+  z-index: 1;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245, 244, 240, 0.64);
 }
 
 .custom-systems {
@@ -1728,7 +1856,8 @@ button:focus-visible {
 }
 
 .pricing-card__range {
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 300;
   font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
   color: #ffd60a;
 }
@@ -1775,7 +1904,8 @@ button:focus-visible {
 }
 
 .maintenance-card__price {
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 300;
   font-size: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
 }
 .maintenance-card__price .unit {
@@ -1860,13 +1990,14 @@ button:focus-visible {
 }
 
 .estimator__total {
-  font-family: "Archivo", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  font-weight: 300;
   font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
   color: #f5f4f0;
 }
 
 .estimator__total--empty {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Arvo", ui-serif, Georgia, serif;
   font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
   color: rgba(245, 244, 240, 0.4);
 }

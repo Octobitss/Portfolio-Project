@@ -23,10 +23,25 @@
   height: 60vw;
   max-width: 900px;
   max-height: 900px;
-  background: radial-gradient(circle, rgb(254 255 11 / 14%), transparent 65%);
-  filter: blur(10px);
   pointer-events: none;
   z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgb(254 255 11 / 14%), transparent 65%);
+    filter: blur(10px);
+  }
+}
+
+.services__glow-mark {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 40%;
+  height: auto;
+  opacity: 0.4;
 }
 
 .services__frame {

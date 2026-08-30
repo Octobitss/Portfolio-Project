@@ -6,6 +6,7 @@ import { PricingCard } from "./PricingCard";
 import { MaintenanceComparison } from "./MaintenanceComparison";
 import { Estimator } from "./Estimator";
 import { trackEvent } from "../../lib/analytics";
+import { gmailComposeUrl } from "../../lib/email";
 
 type Tab = "shopify" | "react" | "custom" | "maintenance";
 
@@ -74,7 +75,9 @@ export function Investment() {
             </p>
           </div>
           <a
-            href="mailto:king.op.nexus@gmail.com?subject=Custom%20Project%20Inquiry"
+            href={gmailComposeUrl("Custom Project Inquiry")}
+            target="_blank"
+            rel="noreferrer"
             className="btn btn--ghost"
             onClick={() => trackEvent("cta_click", { location: "investment_custom_quote" })}
           >

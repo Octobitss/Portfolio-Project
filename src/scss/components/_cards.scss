@@ -24,6 +24,7 @@
 
 .metric-card__value {
   font-family: v.$font-display;
+  font-weight: 300;
   font-size: v.$fs-xl;
   line-height: 1;
   display: flex;
@@ -44,6 +45,8 @@
 .tag {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: v.$font-mono;
   font-size: v.$fs-2xs;
   letter-spacing: 0.08em;
