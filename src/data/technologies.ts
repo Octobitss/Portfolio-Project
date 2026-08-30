@@ -31,7 +31,7 @@ export const architectureFlow: ArchitectureNode[] = [
   {
     id: "database",
     label: "Database",
-    bullets: ["Structured data storage", "Query optimization"],
+    bullets: ["Structured data storage", "Query optimization", "Caching"],
   },
   {
     id: "logic",

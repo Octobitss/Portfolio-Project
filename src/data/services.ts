@@ -25,7 +25,7 @@ export const services: Service[] = [
     name: "React Systems",
     headline: "Software that fits the team.",
     description: "Business software designed around the way your team actually works.",
-    stack: ["React", "TypeScript", "JavaScript", "REST APIs", "Node.js"],
+    stack: ["React", "JavaScript", "REST APIs", "Node.js", "SPRINGBOOT", "POSTGRESQL"],
     visual: "react",
   },
   {

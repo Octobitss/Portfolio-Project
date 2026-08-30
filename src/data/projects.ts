@@ -16,7 +16,7 @@ export const projects: Project[] = [
     index: "01",
     name: "Task Master",
     type: "React System",
-    technology: ["React", "TypeScript", "REST API"],
+    technology: ["React", "JavaScript", "Java", "SpringBoot", "PostgreSql"],
     description: "A team task and project management platform for organizing sprints and tracking workflow progress.",
     visual: "screenshot",
     url: "https://taskmasteropnexus.xyz/",
