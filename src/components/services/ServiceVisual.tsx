@@ -1,9 +1,9 @@
-import { ShoppingCart, GitBranch, Users, TrendingUp, Package, Activity } from "lucide-react";
+import { ShoppingCart, TrendingUp, Package, Activity } from "lucide-react";
 
 const shopifyItems = ["Tee", "Hoodie", "Cap", "Tote", "Mug", "Pin"];
 const flowSteps = ["Business Process", "System Architecture", "Custom Interface", "Automation", "Production"];
 
-export function ServiceVisual({ variant }: { variant: "shopify" | "react" | "custom" | "queue" }) {
+export function ServiceVisual({ variant }: { variant: "shopify" | "react" | "custom" }) {
   if (variant === "shopify") {
     return (
       <div className="browser tilt">
@@ -63,43 +63,15 @@ export function ServiceVisual({ variant }: { variant: "shopify" | "react" | "cus
     );
   }
 
-  if (variant === "custom") {
-    return (
-      <div className="flow-diagram">
-        {flowSteps.map((step, i) => (
-          <div className="flow-diagram__step" key={step}>
-            <span className="flow-diagram__index">{String(i + 1).padStart(2, "0")}</span>
-            <span className="flow-diagram__label">{step}</span>
-            {i < flowSteps.length - 1 && <span className="flow-diagram__arrow" aria-hidden="true" />}
-          </div>
-        ))}
-      </div>
-    );
-  }
-
   return (
-    <div className="browser tilt">
-      <div className="browser__chrome">
-        <div className="browser__dots"><span /><span /><span /></div>
-        <div className="browser__url">queue.opnexus.dev</div>
-      </div>
-      <div className="browser__body">
-        <div className="queue-display">
-          <span className="queue-display__label">Now Serving</span>
-          <span className="queue-display__number">A002</span>
-          <div className="queue-display__meta">
-            <span><Users size={14} style={{ display: "inline", marginRight: 4 }} />Counter 03</span>
-            <span><GitBranch size={14} style={{ display: "inline", marginRight: 4 }} />4 Waiting</span>
-          </div>
-          <div className="queue-list">
-            {["A001", "A002", "A003", "A004"].map((n) => (
-              <span className={`queue-chip ${n === "A002" ? "is-current" : ""}`} key={n}>
-                {n}
-              </span>
-            ))}
-          </div>
+    <div className="flow-diagram">
+      {flowSteps.map((step, i) => (
+        <div className="flow-diagram__step" key={step}>
+          <span className="flow-diagram__index">{String(i + 1).padStart(2, "0")}</span>
+          <span className="flow-diagram__label">{step}</span>
+          {i < flowSteps.length - 1 && <span className="flow-diagram__arrow" aria-hidden="true" />}
         </div>
-      </div>
+      ))}
     </div>
   );
 }

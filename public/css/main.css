@@ -293,7 +293,8 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: background-color 0.6s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.6s cubic-bezier(0.25, 1, 0.5, 1), padding 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateY(0);
+  transition: background-color 0.6s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.6s cubic-bezier(0.25, 1, 0.5, 1), padding 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
@@ -301,6 +302,9 @@ button:focus-visible {
   backdrop-filter: blur(14px);
   border-bottom-color: rgba(245, 244, 240, 0.12);
   padding-block: 1rem;
+}
+.nav.is-hidden {
+  transform: translateY(-100%);
 }
 
 .nav__logo {
@@ -319,8 +323,8 @@ button:focus-visible {
 }
 
 .nav__logo-mark {
-  height: 20%;
-  max-width: 20%;
+  height: 10%;
+  max-width: 5%;
   width: auto;
   display: block;
 }
@@ -797,13 +801,17 @@ button:focus-visible {
 
 .hero__panel--react .hero__panel-face,
 .hero__panel--admin .hero__panel-face,
-.hero__panel--database .hero__panel-face {
+.hero__panel--database .hero__panel-face,
+.hero__panel--figma .hero__panel-face,
+.hero__panel--vscode .hero__panel-face {
   animation-duration: 7.5s;
   animation-delay: -1.5s;
 }
 
 .hero__panel--api .hero__panel-face,
-.hero__panel--pos .hero__panel-face {
+.hero__panel--pos .hero__panel-face,
+.hero__panel--github .hero__panel-face,
+.hero__panel--abtest .hero__panel-face {
   animation-duration: 5.2s;
   animation-delay: -2.7s;
 }
@@ -824,7 +832,7 @@ button:focus-visible {
   margin-inline: auto;
   z-index: 0;
   width: 110px;
-  height: auto;
+  aspect-ratio: 1/1;
   opacity: 0.16;
   pointer-events: none;
   display: none;
@@ -838,6 +846,39 @@ button:focus-visible {
   .brand-travel-logo {
     width: 150px;
   }
+}
+
+.brand-travel-logo__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand-travel-logo__face > img,
+.brand-travel-logo__face > svg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-travel-logo__shopify-item,
+.brand-travel-logo__react-item {
+  position: absolute;
+  inset: 0;
+}
+
+.brand-travel-logo__custom-half {
+  position: absolute;
+  inset: 0;
+}
+.brand-travel-logo__custom-half--top {
+  clip-path: inset(0 0 50% 0);
+}
+.brand-travel-logo__custom-half--bottom {
+  clip-path: inset(50% 0 0 0);
 }
 
 .hero__content {

@@ -42,13 +42,17 @@
 
 .hero__panel--react .hero__panel-face,
 .hero__panel--admin .hero__panel-face,
-.hero__panel--database .hero__panel-face {
+.hero__panel--database .hero__panel-face,
+.hero__panel--figma .hero__panel-face,
+.hero__panel--vscode .hero__panel-face {
   animation-duration: 7.5s;
   animation-delay: -1.5s;
 }
 
 .hero__panel--api .hero__panel-face,
-.hero__panel--pos .hero__panel-face {
+.hero__panel--pos .hero__panel-face,
+.hero__panel--github .hero__panel-face,
+.hero__panel--abtest .hero__panel-face {
   animation-duration: 5.2s;
   animation-delay: -2.7s;
 }
@@ -66,7 +70,7 @@
   margin-inline: auto;
   z-index: 0;
   width: 110px;
-  height: auto;
+  aspect-ratio: 1 / 1;
   opacity: 0.16;
   pointer-events: none;
   display: none;
@@ -77,6 +81,41 @@
 
   @include respond-up(lg) {
     width: 150px;
+  }
+}
+
+.brand-travel-logo__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > img,
+  > svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+.brand-travel-logo__shopify-item,
+.brand-travel-logo__react-item {
+  position: absolute;
+  inset: 0;
+}
+
+.brand-travel-logo__custom-half {
+  position: absolute;
+  inset: 0;
+
+  &--top {
+    clip-path: inset(0 0 50% 0);
+  }
+
+  &--bottom {
+    clip-path: inset(50% 0 0 0);
   }
 }
 

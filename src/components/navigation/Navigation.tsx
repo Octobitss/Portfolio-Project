@@ -8,13 +8,28 @@ import { trackEvent } from "../../lib/analytics";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeHref, setActiveHref] = useState<string | null>(null);
   const mobileRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
   const { lenis, reducedMotion } = useMotionPrefs();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    lastScrollY.current = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      const delta = y - lastScrollY.current;
+      if (y < 120) {
+        setHidden(false);
+      } else if (delta > 4) {
+        setHidden(true);
+      } else if (delta < -4) {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -70,9 +85,9 @@ export function Navigation() {
 
   return (
     <>
-      <header className={`nav ${scrolled ? "is-scrolled" : ""}`}>
+      <header className={`nav ${scrolled ? "is-scrolled" : ""} ${hidden && !open ? "is-hidden" : ""}`}>
         <a href="#top" className="nav__logo" onClick={(e) => handleNavClick(e, "#top")}>
-          <img src="/brand/opnexus-mark-sm.webp" alt="" className="nav__logo-mark" />
+          <img src="/brand/opnexusNewLogo.png" alt="" className="nav__logo-mark" />
           OP<span>.</span>NEXUS
         </a>
 

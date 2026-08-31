@@ -11,9 +11,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transform: translateY(0);
   transition: background-color v.$duration-base v.$ease-out-quart,
     border-color v.$duration-base v.$ease-out-quart,
-    padding v.$duration-base v.$ease-out-quart;
+    padding v.$duration-base v.$ease-out-quart,
+    transform v.$duration-base v.$ease-out-quart;
   border-bottom: 1px solid transparent;
 
   &.is-scrolled {
@@ -21,6 +23,10 @@
     backdrop-filter: blur(14px);
     border-bottom-color: v.$color-border;
     padding-block: v.$space-sm;
+  }
+
+  &.is-hidden {
+    transform: translateY(-100%);
   }
 }
 
@@ -41,8 +47,8 @@
 }
 
 .nav__logo-mark {
-  height: 20%;
-  max-width: 20%; 
+  height: 10%;
+  max-width: 5%;
   width: auto;
   display: block;
 }
