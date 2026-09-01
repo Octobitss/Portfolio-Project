@@ -9,17 +9,16 @@
 @use "components/navigation";
 @use "components/cards";
 @use "components/product-mockups";
+@use "components/webgl-bg";
 @use "components/cursor";
+@use "components/preloader";
 
 @use "sections/hero";
 @use "sections/results";
 @use "sections/services";
-@use "sections/technology";
-@use "sections/case-studies";
-@use "sections/shopify-portfolio";
-@use "sections/product-tours";
-@use "sections/process";
+@use "sections/portfolio";
 @use "sections/custom-systems";
+@use "sections/why-choose-us";
 @use "sections/pricing";
 @use "sections/cta";
 @use "sections/footer";

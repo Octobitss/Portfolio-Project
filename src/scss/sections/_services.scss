@@ -7,7 +7,6 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  background: v.$color-ink;
 
   @include reduced-motion {
     height: auto;

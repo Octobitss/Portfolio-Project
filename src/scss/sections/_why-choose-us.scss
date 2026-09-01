@@ -1,0 +1,84 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.why-choose-us {
+  position: relative;
+  overflow: hidden;
+}
+
+.why-choose-us__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-2xl;
+
+  @include respond-up(lg) {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: v.$space-3xl;
+  }
+}
+
+.why-choose-us__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: v.$space-md;
+
+  @include respond-up(lg) {
+    position: sticky;
+    top: 160px;
+    align-self: start;
+  }
+}
+
+.why-choose-us__lead {
+  max-width: 40ch;
+}
+
+.why-choose-us__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.why-choose-us__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: start;
+  gap: v.$space-lg;
+  padding-block: v.$space-lg;
+  border-top: 1px solid v.$color-border;
+  transition: padding-left v.$duration-base v.$ease-out-quart;
+
+  &:last-child {
+    border-bottom: 1px solid v.$color-border;
+  }
+
+  &:hover {
+    padding-left: v.$space-sm;
+
+    .why-choose-us__row-index {
+      color: v.$color-accent;
+    }
+  }
+}
+
+.why-choose-us__row-index {
+  font-family: v.$font-display;
+  font-weight: 300;
+  font-size: v.$fs-lg;
+  color: v.$color-paper-faint;
+  transition: color v.$duration-base v.$ease-out-quart;
+}
+
+.why-choose-us__row-body {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2xs;
+  max-width: 60ch;
+}
+
+.why-choose-us__row-title {
+  text-transform: none;
+}

@@ -2,8 +2,13 @@
 @use "../abstracts/mixins" as *;
 
 .investment {
-  background: v.$color-ink-soft;
-  border-top: 1px solid v.$color-border;
+  position: relative;
+  overflow: hidden;
+}
+
+.investment__inner {
+  position: relative;
+  z-index: 1;
 }
 
 .investment__header {
@@ -12,157 +17,6 @@
   gap: v.$space-md;
   max-width: 640px;
   margin-bottom: v.$space-xl;
-}
-
-.investment__tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: v.$space-2xs;
-  margin-bottom: v.$space-xl;
-}
-
-.investment__tab {
-  font-family: v.$font-mono;
-  font-size: v.$fs-xs;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.8em 1.4em;
-  border-radius: 999px;
-  border: 1px solid v.$color-border-strong;
-  color: v.$color-paper-dim;
-  transition: border-color v.$duration-fast v.$ease-out-quart, color v.$duration-fast v.$ease-out-quart,
-    background-color v.$duration-fast v.$ease-out-quart;
-
-  &.is-active {
-    background: v.$color-paper;
-    border-color: v.$color-paper;
-    color: v.$color-ink;
-  }
-}
-
-.investment__panel {
-  animation: investment-panel-in 0.5s v.$ease-out-quart both;
-  margin-bottom: v.$space-3xl;
-}
-
-@keyframes investment-panel-in {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.investment__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: v.$space-md;
-
-  @include respond-up(sm) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include respond-up(lg) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.pricing-card-wrap {
-  height: 100%;
-}
-
-.pricing-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: v.$space-sm;
-}
-
-.pricing-card__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: v.$space-sm;
-}
-
-.pricing-card__name {
-  text-transform: none;
-}
-
-.pricing-card__range {
-  font-family: v.$font-display;
-  font-weight: 300;
-  font-size: v.$fs-md;
-  color: v.$color-accent;
-}
-
-.pricing-card__addon {
-  font-family: v.$font-mono;
-  font-size: v.$fs-2xs;
-  color: v.$color-paper-faint;
-}
-
-.maintenance-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: v.$space-md;
-
-  @include respond-up(sm) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include respond-up(lg) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.maintenance-card {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: v.$space-sm;
-  @include hairline-border;
-  border-radius: v.$border-radius-md;
-  padding: v.$space-lg v.$space-md;
-  background: v.$color-ink;
-  transition: transform v.$duration-base v.$ease-out-quart, opacity v.$duration-base v.$ease-out-quart,
-    border-color v.$duration-base v.$ease-out-quart;
-
-  &.is-selected {
-    border-color: v.$color-accent;
-    transform: translateY(-8px) scale(1.03);
-  }
-
-  &.is-dimmed {
-    opacity: 0.55;
-  }
-}
-
-.maintenance-card__price {
-  font-family: v.$font-display;
-  font-weight: 300;
-  font-size: v.$fs-lg;
-
-  .unit {
-    font-size: 0.4em;
-    color: v.$color-paper-faint;
-  }
-}
-
-.maintenance-card__list {
-  display: flex;
-  flex-direction: column;
-  gap: v.$space-2xs;
-  font-size: v.$fs-sm;
-  color: v.$color-paper-dim;
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: v.$space-2xs;
-  }
-
-  svg {
-    color: v.$color-accent;
-    flex-shrink: 0;
-  }
 }
 
 .estimator {
@@ -214,34 +68,23 @@
   }
 }
 
-.estimator__option-price {
-  color: v.$color-paper-faint;
-  font-size: 0.9em;
-}
-
-.estimator__result {
-  display: flex;
-  flex-direction: column;
-  gap: v.$space-2xs;
-  padding-top: v.$space-lg;
-  border-top: 1px solid v.$color-border;
-}
-
-.estimator__total {
-  font-family: v.$font-display;
-  font-weight: 300;
-  font-size: v.$fs-xl;
-  color: v.$color-paper;
-}
-
-.estimator__total--empty {
-  font-family: v.$font-body;
-  font-size: v.$fs-md;
-  color: v.$color-paper-faint;
-}
-
 .estimator__disclaimer {
   max-width: 60ch;
+}
+
+.estimator__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: v.$space-md;
+  padding-top: v.$space-lg;
+  border-top: 1px solid v.$color-border;
+  animation: estimator-contact-in 0.4s v.$ease-out-quart both;
+}
+
+@keyframes estimator-contact-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .investment__estimator {
@@ -252,28 +95,4 @@
 
 .investment__estimator-title {
   text-transform: none;
-}
-
-.investment__custom {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: v.$space-md;
-  margin-top: v.$space-2xl;
-  padding: v.$space-lg;
-  @include hairline-border;
-  border-radius: v.$border-radius-lg;
-  background: v.$color-ink;
-
-  @include respond-up(md) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: v.$space-xl;
-  }
-}
-
-.investment__custom-title {
-  text-transform: none;
-  margin-bottom: v.$space-2xs;
 }

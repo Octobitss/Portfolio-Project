@@ -21,15 +21,8 @@ interface HeroPanel {
 
 const panels: HeroPanel[] = [
   { id: "shopify", label: "SHOPIFY", top: "25%", left: "17%", exitX: -160, exitY: -70, exitRotate: -8 },
-  { id: "react", label: "REACT", top: "18%", left: "75%", exitX: 170, exitY: -50, exitRotate: 9 },
-  { id: "api", label: "API", top: "14%", left: "30%", exitX: 10, exitY: -170, exitRotate: 3 },
-  { id: "queue", label: "QUEUE", top: "50%", left: "10%", exitX: -220, exitY: 20, exitRotate: -6 },
-  { id: "admin", label: "ADMIN", top: "46%", left: "85%", exitX: 210, exitY: 30, exitRotate: 8 },
+  { id: "saas", label: "SAAS", top: "16%", left: "58%", exitX: 30, exitY: -170, exitRotate: 4 },
   { id: "pos", label: "POS", top: "75%", left: "19%", exitX: -180, exitY: 100, exitRotate: -12 },
-  { id: "database", label: "DATABASE", top: "87%", left: "35%", exitX: -20, exitY: 170, exitRotate: -4 },
-  { id: "github", label: "GITHUB", top: "62%", left: "88%", exitX: 200, exitY: 60, exitRotate: 7 },
-  { id: "figma", label: "FIGMA", top: "15%", left: "58%", exitX: 30, exitY: -170, exitRotate: 4 },
-  { id: "vscode", label: "VS CODE", top: "38%", left: "6%", exitX: -210, exitY: -40, exitRotate: -7 },
   { id: "abtest", label: "A/B TEST", top: "78%", left: "75%", exitX: 170, exitY: 160, exitRotate: 8 },
 ];
 
@@ -118,7 +111,7 @@ export function Hero() {
     const customBottom = customBottomRef.current;
     const servicesEl = document.getElementById("services");
     const glowEl = document.querySelector<HTMLElement>(".services__glow");
-    const afterServicesEl = document.getElementById("technology");
+    const afterServicesEl = document.getElementById("work");
     if (
       !logo ||
       !brandFace ||
@@ -161,7 +154,7 @@ export function Hero() {
       //   *within* this pinned span, so rawIndex must be measured against it —
       //   using the later position below here would lag the logo behind the
       //   slide content it's supposed to track.
-      // - combinedEnd is where the next section (#technology) actually arrives.
+      // - combinedEnd is where the next section (#work) actually arrives.
       //   After the pin releases, the now-unpinned Services section still has to
       //   scroll normally out of view (one more full viewport) before that
       //   happens — the logo should stay visible through that stretch too, so

@@ -1,5 +1,5 @@
 import { navLinks, footerServiceLinks } from "../../data/nav";
-import { CONTACT_EMAIL, gmailComposeUrl } from "../../lib/email";
+import { CONTACT_EMAIL, CONTACT_PHONE, gmailComposeUrl } from "../../lib/email";
 
 export function Footer() {
   return (
@@ -12,6 +12,9 @@ export function Footer() {
           <p className="text-body footer__tagline">We build the systems behind modern business.</p>
           <a href={gmailComposeUrl()} target="_blank" rel="noreferrer" className="footer__link">
             {CONTACT_EMAIL}
+          </a>
+          <a href={`tel:${CONTACT_PHONE}`} className="footer__link">
+            {CONTACT_PHONE}
           </a>
         </div>
 

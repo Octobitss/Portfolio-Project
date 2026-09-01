@@ -5,7 +5,6 @@
   position: relative;
   overflow: hidden;
   text-align: center;
-  border-top: 1px solid v.$color-border;
 }
 
 .cta__glow {
@@ -35,4 +34,14 @@
 
 .cta__actions {
   justify-content: center;
+}
+
+.cta__phone {
+  color: v.$color-paper-dim;
+
+  a {
+    color: v.$color-paper;
+    text-decoration: underline;
+    text-decoration-color: v.$color-border-strong;
+  }
 }

@@ -7,6 +7,7 @@ export default defineConfig({
     target: "es2019",
     sourcemap: false,
     assetsInlineLimit: 4096,
+    modulePreload: false,
   },
   server: {
     port: 5173,

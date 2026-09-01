@@ -1,0 +1,77 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as *;
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: v.$z-preloader;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: v.$color-ink;
+  overflow: hidden;
+}
+
+.preloader__lockup {
+  display: flex;
+  align-items: center;
+  gap: clamp(v.$space-xs, 2vw, v.$space-md);
+  padding-inline: v.$space-md;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.preloader__mark {
+  width: clamp(2.5rem, 6vw, 3.75rem);
+  height: clamp(2.5rem, 6vw, 3.75rem);
+  flex: none;
+}
+
+.preloader__mark-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.preloader__ring {
+  fill: none;
+  stroke: v.$color-accent;
+  stroke-width: 11;
+  stroke-linecap: round;
+}
+
+.preloader__node,
+.preloader__dot {
+  fill: v.$color-accent;
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+
+.preloader__word {
+  margin: 0;
+  display: inline-flex;
+  font-family: v.$font-display;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 5vw, 2.75rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: v.$color-paper;
+}
+
+.preloader__letter {
+  display: inline-block;
+}
+
+.preloader__letter--dot {
+  color: v.$color-accent;
+}
+
+@include reduced-motion {
+  .preloader__ring,
+  .preloader__node,
+  .preloader__dot,
+  .preloader__letter,
+  .preloader__mark,
+  .preloader__lockup {
+    transition: none !important;
+  }
+}

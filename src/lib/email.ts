@@ -1,4 +1,5 @@
 export const CONTACT_EMAIL = "king.op.nexus@gmail.com";
+export const CONTACT_PHONE = "+0912983213";
 
 export function gmailComposeUrl(subject?: string, body?: string): string {
   const params = new URLSearchParams({ view: "cm", fs: "1", to: CONTACT_EMAIL });

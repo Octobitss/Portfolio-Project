@@ -3,7 +3,7 @@ import { TextReveal } from "../../animations/TextReveal";
 import { ScrollReveal } from "../../animations/ScrollReveal";
 import { MagneticButton } from "../../animations/MagneticButton";
 import { trackEvent } from "../../lib/analytics";
-import { gmailComposeUrl } from "../../lib/email";
+import { CONTACT_PHONE, gmailComposeUrl } from "../../lib/email";
 
 export function CTA() {
   return (
@@ -39,6 +39,11 @@ export function CTA() {
               View Our Work
             </a>
           </MagneticButton>
+        </ScrollReveal>
+        <ScrollReveal delay={0.32} className="cta__phone-wrap">
+          <p className="text-body cta__phone">
+            Or call <a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a>
+          </p>
         </ScrollReveal>
       </div>
     </section>

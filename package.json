@@ -6,11 +6,13 @@
   "description": "OPNexus — premium interactive portfolio for a software development studio.",
   "scripts": {
     "dev": "vite",
-    "build": "gulp build && tsc --noEmit && vite build",
+    "build": "gulp build && npm run js:build && tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "tsc --noEmit",
     "scss:watch": "gulp watch",
-    "scss:build": "gulp build"
+    "scss:build": "gulp build",
+    "js:build": "node scripts/build-js.mjs",
+    "js:watch": "node scripts/build-js.mjs --watch"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
@@ -18,11 +20,13 @@
     "lenis": "^1.1.20",
     "lucide-react": "^0.462.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "three": "^0.169.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.169.0",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "gulp": "^5.0.0",

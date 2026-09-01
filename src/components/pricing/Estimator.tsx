@@ -1,24 +1,28 @@
 import { useState } from "react";
-import {
-  buildTracks,
-  systemTypesByTrack,
-  additionalRequirements,
-  calculateEstimate,
-  type BuildTrack,
-} from "../../data/estimator";
-import { formatUSD } from "../../data/pricing";
-import { AnimatedRange } from "./AnimatedRange";
+import { ArrowUpRight } from "lucide-react";
+import { buildTracks, systemTypesByTrack, additionalRequirements, type BuildTrack } from "../../data/estimator";
+import { trackEvent } from "../../lib/analytics";
+import { gmailComposeUrl } from "../../lib/email";
 
 export function Estimator() {
   const [track, setTrack] = useState<BuildTrack | null>(null);
   const [systemType, setSystemType] = useState<string | null>(null);
   const [requirements, setRequirements] = useState<string[]>([]);
 
-  const estimate = calculateEstimate(track, systemType, requirements);
-
   const toggleRequirement = (id: string) => {
     setRequirements((prev) => (prev.includes(id) ? prev.filter((r) => r !== id) : [...prev, id]));
   };
+
+  const trackLabel = buildTracks.find((t) => t.id === track)?.label;
+  const systemLabel = track ? systemTypesByTrack[track].find((o) => o.id === systemType)?.label : undefined;
+  const requirementNames = requirements
+    .map((id) => additionalRequirements.find((r) => r.id === id)?.name)
+    .filter((name): name is string => Boolean(name));
+
+  const canContact = Boolean(track && systemType);
+  const emailBody = `What type of system: ${trackLabel} — ${systemLabel}\nAdditional requirements: ${
+    requirementNames.length ? requirementNames.join(", ") : "None"
+  }`;
 
   return (
     <div className="estimator">
@@ -65,24 +69,28 @@ export function Estimator() {
               onClick={() => toggleRequirement(req.id)}
             >
               {req.name}
-              <span className="estimator__option-price">+{formatUSD(req.price)}</span>
             </button>
           ))}
         </div>
       </div>
 
-      <div className="estimator__result">
-        <span className="eyebrow">Estimated Project Range</span>
-        {estimate ? (
-          <AnimatedRange min={estimate.min} max={estimate.max} className="estimator__total" />
-        ) : (
-          <span className="estimator__total estimator__total--empty">Select a build type and system to continue</span>
-        )}
-        <p className="text-body estimator__disclaimer">
-          This is an estimate, not a final quotation. Final pricing depends on project scope,
-          requirements, integrations, and technical complexity.
-        </p>
-      </div>
+      {canContact && (
+        <div className="estimator__contact">
+          <p className="text-body estimator__disclaimer">
+            Send us what you're building and we'll follow up with next steps and pricing.
+          </p>
+          <a
+            href={gmailComposeUrl("Choosen what are you building", emailBody)}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn--primary"
+            onClick={() => trackEvent("cta_click", { location: "estimator_contact" })}
+          >
+            Contact Us
+            <ArrowUpRight />
+          </a>
+        </div>
+      )}
     </div>
   );
 }

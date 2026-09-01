@@ -40,18 +40,12 @@
   }
 }
 
-.hero__panel--react .hero__panel-face,
-.hero__panel--admin .hero__panel-face,
-.hero__panel--database .hero__panel-face,
-.hero__panel--figma .hero__panel-face,
-.hero__panel--vscode .hero__panel-face {
+.hero__panel--saas .hero__panel-face {
   animation-duration: 7.5s;
   animation-delay: -1.5s;
 }
 
-.hero__panel--api .hero__panel-face,
 .hero__panel--pos .hero__panel-face,
-.hero__panel--github .hero__panel-face,
 .hero__panel--abtest .hero__panel-face {
   animation-duration: 5.2s;
   animation-delay: -2.7s;

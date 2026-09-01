@@ -8,9 +8,9 @@
   right: 0;
   z-index: v.$z-nav;
   padding: v.$space-md v.$container-padding;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   transform: translateY(0);
   transition: background-color v.$duration-base v.$ease-out-quart,
     border-color v.$duration-base v.$ease-out-quart,
@@ -104,6 +104,7 @@
 .nav__actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: v.$space-sm;
   z-index: 2;
 }

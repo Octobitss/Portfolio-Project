@@ -58,7 +58,11 @@
 
   img {
     width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
     display: block;
+    transition: transform v.$duration-slow v.$ease-out-quart;
   }
 }
 
