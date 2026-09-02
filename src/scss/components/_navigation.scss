@@ -19,15 +19,25 @@
   border-bottom: 1px solid transparent;
 
   &.is-scrolled {
-    background-color: rgba(10, 11, 13, 0.72);
+    background-color: rgba(239, 232, 216, 0.82);
     backdrop-filter: blur(14px);
     border-bottom-color: v.$color-border;
     padding-block: v.$space-sm;
   }
+}
 
-  &.is-hidden {
-    transform: translateY(-100%);
-  }
+.nav__progress-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: transparent;
+}
+
+.nav__progress-bar {
+  height: 100%;
+  background: v.$color-accent;
 }
 
 .nav__logo {

@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: column;
   gap: v.$space-sm;
+  background: v.$color-ink !important;
 }
 
 .metric-card__value {

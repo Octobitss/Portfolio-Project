@@ -14,6 +14,8 @@ html {
 html {
   overflow-x: hidden;
   width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 body {
@@ -23,6 +25,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 img,

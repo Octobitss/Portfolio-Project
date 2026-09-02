@@ -5,6 +5,8 @@
   background: v.$color-ink;
   border-top: 1px solid v.$color-border;
   padding-block: v.$space-2xl v.$space-lg;
+  position: relative;
+  z-index: 3;
 }
 
 .footer__inner {

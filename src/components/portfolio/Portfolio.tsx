@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "../../data/projects";
 import { shopifyStores } from "../../data/shopifyStores";
 import { TextReveal } from "../../animations/TextReveal";
 import { ScrollReveal } from "../../animations/ScrollReveal";
 import { ScrollScale } from "../../animations/ScrollScale";
 import { CaseStudyVisual } from "./CaseStudyVisual";
+import { ScrollTrigger, ensureGsap } from "../../lib/gsap";
 
 type PortfolioTab = "custom" | "shopify";
 
@@ -14,8 +15,28 @@ const tabs: { id: PortfolioTab; label: string }[] = [
   { id: "shopify", label: "Shopify Stores We've Built" },
 ];
 
+const SHOPIFY_PAGE_SIZE = 6;
+
 export function Portfolio() {
   const [tab, setTab] = useState<PortfolioTab>("custom");
+  const [shopifyPage, setShopifyPage] = useState(0);
+
+  const shopifyPageCount = Math.ceil(shopifyStores.length / SHOPIFY_PAGE_SIZE);
+  const pagedStores = shopifyStores.slice(
+    shopifyPage * SHOPIFY_PAGE_SIZE,
+    shopifyPage * SHOPIFY_PAGE_SIZE + SHOPIFY_PAGE_SIZE
+  );
+
+  // Switching tabs (or pages) swaps in a differently-sized DOM subtree, which
+  // changes this section's height without GSAP knowing — every ScrollTrigger
+  // pinned below it (Custom Systems in particular) is left holding stale
+  // start/end offsets until something tells it to remeasure. Deferred a frame
+  // so the new layout has actually committed before we measure it.
+  useEffect(() => {
+    ensureGsap();
+    const id = requestAnimationFrame(() => ScrollTrigger.refresh());
+    return () => cancelAnimationFrame(id);
+  }, [tab, shopifyPage]);
 
   return (
     <section className="section portfolio" id="work">
@@ -68,8 +89,8 @@ export function Portfolio() {
                 Real Shopify storefronts we've designed, built, and optimized for online, in-store,
                 and B2B commerce.
               </p>
-              <div className="shopify-showcase">
-                {shopifyStores.map((store, i) => {
+              <div key={shopifyPage} className="shopify-showcase">
+                {pagedStores.map((store, i) => {
                   const domain = store.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
                   return (
                     <ScrollReveal
@@ -105,6 +126,32 @@ export function Portfolio() {
                   );
                 })}
               </div>
+
+              {shopifyPageCount > 1 && (
+                <div className="portfolio__pagination">
+                  <button
+                    className="portfolio__page-btn"
+                    onClick={() => setShopifyPage((p) => Math.max(0, p - 1))}
+                    disabled={shopifyPage === 0}
+                    aria-label="Previous stores"
+                  >
+                    <ChevronLeft />
+                    Previous
+                  </button>
+                  <span className="portfolio__page-indicator">
+                    {String(shopifyPage + 1).padStart(2, "0")} / {String(shopifyPageCount).padStart(2, "0")}
+                  </span>
+                  <button
+                    className="portfolio__page-btn"
+                    onClick={() => setShopifyPage((p) => Math.min(shopifyPageCount - 1, p + 1))}
+                    disabled={shopifyPage === shopifyPageCount - 1}
+                    aria-label="Next stores"
+                  >
+                    Next
+                    <ChevronRight />
+                  </button>
+                </div>
+              )}
             </>
           )}
         </div>

@@ -29,7 +29,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle, rgb(254 255 11 / 14%), transparent 65%);
+    background: radial-gradient(circle, rgb(181 84 74 / 18%), transparent 65%);
     filter: blur(10px);
   }
 }
@@ -168,7 +168,7 @@
   @include hairline-border;
   border-radius: v.$border-radius-md;
   padding: v.$space-sm v.$space-md;
-  background: v.$color-ink-soft;
+  background: v.$color-ink;
 }
 
 .flow-diagram__index {

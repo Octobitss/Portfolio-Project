@@ -1,0 +1,32 @@
+# OPNexus
+
+> OPNexus is a software engineering studio that designs and builds Shopify commerce, React platforms, POS and dashboard software, and custom ticketing/queueing systems for modern businesses.
+
+OPNexus is a small, senior software team offering end-to-end ownership of every system we build — no outsourced pieces, no account-manager relay chains. Clients work directly with the engineers building their system, from scoping through delivery.
+
+## Services
+
+- Shopify storefront design, development, and migration
+- React web applications (dashboards, admin panels, business websites)
+- Custom POS (point-of-sale) systems
+- Queueing and ticketing systems
+- Custom SaaS and internal business software
+
+## Portfolio
+
+- [Task Master](https://taskmasteropnexus.xyz/) — team task and project management platform (React, SpringBoot, PostgreSQL)
+- [Arte Sari](https://artesari.com/) — Shopify storefront for Filipino-artisan jewelry, accessories, and home goods
+- [Showpony](https://www.showponyaus.com.au/) — Shopify storefront for an Australian hair-extensions brand
+- [Wonder Slumber](https://wonderslumber.com/) — Shopify storefront for sleep-focused pillows and sleep-comfort products
+- [UTV Warehouse](https://utvwarehouse.com/) — Shopify catalog for UTV, ATV, and motocross parts and apparel
+- [Hairscripts by Bevy](https://bevyscripts.com/) — Shopify subscription storefront for a hair-growth supplement brand
+- [SupraSports](https://suprasports.net/) — Shopify storefront for women's activewear
+- [Slimfair](https://theslimfairshop.com/) — Shopify storefront for functional coffee and latte blends
+- [SHOC](https://shoc.com/) — Shopify storefront for anti-fog helmet visors and eye shades
+- [Road Armor](https://roadarmor.com/) — Shopify storefront for steel bumpers and off-road truck accessories
+- [Voomie](https://voomie.com/) — Shopify storefront for focus, energy, and sleep supplements
+
+## Contact
+
+- Email: king.op.nexus@gmail.com
+- Website: https://opnexus.dev/

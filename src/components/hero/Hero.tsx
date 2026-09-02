@@ -8,6 +8,7 @@ import { TextReveal } from "../../animations/TextReveal";
 import { MagneticButton } from "../../animations/MagneticButton";
 import { ReactMark } from "./BrandMarks";
 import { services } from "../../data/services";
+import { hasSeenIntro, INTRO_COMPLETE_EVENT } from "../preloader/Preloader";
 
 interface HeroPanel {
   id: string;
@@ -29,6 +30,9 @@ const panels: HeroPanel[] = [
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const eyebrowRef = useRef<HTMLParagraphElement>(null);
+  const leadRef = useRef<HTMLParagraphElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const scrollCueRef = useRef<HTMLDivElement>(null);
   const logoWrapRef = useRef<HTMLDivElement>(null);
@@ -50,6 +54,41 @@ export function Hero() {
     ensureGsap();
     gsap.set(panelRefs.current.filter(Boolean), { xPercent: -50, yPercent: -50 });
   }, []);
+
+  // First-load entrance: the headline reveals itself via TextReveal's own
+  // scroll trigger (already in view at progress ~0, so it fires immediately),
+  // but the rest of the hero previously just appeared with no motion at all.
+  // Staggering these in — timed to start only once the preloader intro (if
+  // playing this session) has actually cleared, so it isn't wasted underneath
+  // the opaque overlay — makes the first paint read as considerably livelier.
+  useLayoutEffect(() => {
+    if (reducedMotion) return;
+    ensureGsap();
+
+    const targets = [eyebrowRef.current, leadRef.current, actionsRef.current].filter(Boolean);
+    const panelEls = panelRefs.current.filter(Boolean);
+    if (!targets.length && !panelEls.length) return;
+
+    gsap.set(targets, { opacity: 0, y: 24 });
+    gsap.set(panelEls, { opacity: 0, scale: 0.7 });
+
+    let played = false;
+    const play = () => {
+      if (played) return;
+      played = true;
+      const tl = gsap.timeline({ delay: 0.15 });
+      tl.to(targets, { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: "power3.out" }, 0);
+      tl.to(panelEls, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.06, ease: "back.out(1.6)" }, 0.35);
+    };
+
+    if (hasSeenIntro()) {
+      play();
+    } else {
+      window.addEventListener(INTRO_COMPLETE_EVENT, play, { once: true });
+    }
+
+    return () => window.removeEventListener(INTRO_COMPLETE_EVENT, play);
+  }, [reducedMotion]);
 
   useLayoutEffect(() => {
     if (!sectionRef.current || reducedMotion) return;
@@ -409,17 +448,17 @@ export function Hero() {
       </div>
 
       <div className="hero__content" ref={contentRef}>
-        <p className="eyebrow hero__eyebrow">Software Engineering Studio</p>
+        <p className="eyebrow hero__eyebrow" ref={eyebrowRef}>Software Engineering Studio</p>
         <TextReveal
           as="h1"
           className="hero__headline"
           lines={["WE BUILD THE SYSTEMS", "BEHIND MODERN", "BUSINESS."]}
         />
-        <p className="text-lead hero__lead">
+        <p className="text-lead hero__lead" ref={leadRef}>
           From Shopify commerce to custom SaaS platforms, we design and engineer
           the software businesses actually need.
         </p>
-        <div className="btn-group hero__actions">
+        <div className="btn-group hero__actions" ref={actionsRef}>
           <MagneticButton>
             <a href="#services" className="btn btn--primary">
               View Our Systems

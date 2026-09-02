@@ -14409,13 +14409,9 @@ var DrawSVGPlugin = {
 _getGSAP3() && gsap.registerPlugin(DrawSVGPlugin);
 let registered = false;
 function ensureGsap() {
-  console.log("[diag] ensureGsap called, registered=", registered);
   if (registered) return;
   gsapWithCSS.registerPlugin(ScrollTrigger, DrawSVGPlugin);
   registered = true;
-  window.__gsap = gsapWithCSS;
-  window.__ScrollTrigger = ScrollTrigger;
-  console.log("[diag] window.__ScrollTrigger set:", typeof window.__ScrollTrigger);
 }
 const MotionContext = reactExports.createContext({
   reducedMotion: false,
@@ -14480,8 +14476,17 @@ function PreloaderMark({ className, dotRef, ringRef, nodeRef }) {
   ] });
 }
 const SEEN_KEY = "opnexus-intro-seen";
+const INTRO_COMPLETE_EVENT = "opnexus:intro-complete";
 const NAME_CHARS = ["O", "P", ".", "N", "E", "X", "U", "S"];
 const DOT_INDEX = NAME_CHARS.indexOf(".");
+function hasSeenIntro() {
+  if (typeof window === "undefined") return true;
+  try {
+    return window.sessionStorage.getItem(SEEN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
 const EASE_OUT = "cubic-bezier(0.25, 1, 0.5, 1)";
 const EASE_IN_OUT = "cubic-bezier(0.76, 0, 0.24, 1)";
 const TIMING = {
@@ -14493,14 +14498,6 @@ const TIMING = {
   fade: 0.32,
   collapse: 0.75
 };
-function hasSeenIntro() {
-  if (typeof window === "undefined") return true;
-  try {
-    return window.sessionStorage.getItem(SEEN_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
 function Preloader() {
   const [active, setActive] = reactExports.useState(() => !hasSeenIntro());
   const rootRef = reactExports.useRef(null);
@@ -14529,6 +14526,7 @@ function Preloader() {
       } catch {
       }
       setActive(false);
+      window.dispatchEvent(new Event(INTRO_COMPLETE_EVENT));
     };
     const fallback = window.setTimeout(finish, 4500);
     ensureGsap();
@@ -14717,6 +14715,24 @@ const ArrowUpRight = createLucideIcon("ArrowUpRight", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const ChevronLeft = createLucideIcon("ChevronLeft", [
+  ["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const ChevronRight = createLucideIcon("ChevronRight", [
+  ["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]
+]);
+/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const Package = createLucideIcon("Package", [
   [
     "path",
@@ -14804,30 +14820,25 @@ function trackEvent(name, params) {
 }
 function Navigation() {
   const [scrolled, setScrolled] = reactExports.useState(false);
-  const [hidden, setHidden] = reactExports.useState(false);
+  const [progress, setProgress] = reactExports.useState(0);
   const [open, setOpen] = reactExports.useState(false);
   const [activeHref, setActiveHref] = reactExports.useState(null);
   const mobileRef = reactExports.useRef(null);
-  const lastScrollY = reactExports.useRef(0);
   const { lenis, reducedMotion } = useMotionPrefs();
   reactExports.useEffect(() => {
-    lastScrollY.current = window.scrollY;
     const onScroll = () => {
       const y2 = window.scrollY;
       setScrolled(y2 > 24);
-      const delta = y2 - lastScrollY.current;
-      if (y2 < 120) {
-        setHidden(false);
-      } else if (delta > 4) {
-        setHidden(true);
-      } else if (delta < -4) {
-        setHidden(false);
-      }
-      lastScrollY.current = y2;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(100, Math.max(0, y2 / max * 100)) : 0);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
   reactExports.useEffect(() => {
     if (!mobileRef.current) return;
@@ -14871,7 +14882,7 @@ function Navigation() {
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: `nav ${scrolled ? "is-scrolled" : ""} ${hidden && !open ? "is-hidden" : ""}`, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: `nav ${scrolled ? "is-scrolled" : ""}`, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: "#top", className: "nav__logo", onClick: (e) => handleNavClick(e, "#top"), children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/brand/opnexusNewLogo.png", alt: "", className: "nav__logo-mark" }),
         "OP",
@@ -14917,7 +14928,8 @@ function Navigation() {
             ]
           }
         )
-      ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "nav__progress-track", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "nav__progress-bar", style: { width: `${progress}%` } }) })
     ] }),
     open && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "nav__mobile", ref: mobileRef, children: [
       navLinks.map((link) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -15052,6 +15064,9 @@ const panels = [
 function Hero() {
   const sectionRef = reactExports.useRef(null);
   const contentRef = reactExports.useRef(null);
+  const eyebrowRef = reactExports.useRef(null);
+  const leadRef = reactExports.useRef(null);
+  const actionsRef = reactExports.useRef(null);
   const gridRef = reactExports.useRef(null);
   const scrollCueRef = reactExports.useRef(null);
   const logoWrapRef = reactExports.useRef(null);
@@ -15072,6 +15087,29 @@ function Hero() {
     ensureGsap();
     gsapWithCSS.set(panelRefs.current.filter(Boolean), { xPercent: -50, yPercent: -50 });
   }, []);
+  reactExports.useLayoutEffect(() => {
+    if (reducedMotion) return;
+    ensureGsap();
+    const targets = [eyebrowRef.current, leadRef.current, actionsRef.current].filter(Boolean);
+    const panelEls = panelRefs.current.filter(Boolean);
+    if (!targets.length && !panelEls.length) return;
+    gsapWithCSS.set(targets, { opacity: 0, y: 24 });
+    gsapWithCSS.set(panelEls, { opacity: 0, scale: 0.7 });
+    let played = false;
+    const play = () => {
+      if (played) return;
+      played = true;
+      const tl2 = gsapWithCSS.timeline({ delay: 0.15 });
+      tl2.to(targets, { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: "power3.out" }, 0);
+      tl2.to(panelEls, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.06, ease: "back.out(1.6)" }, 0.35);
+    };
+    if (hasSeenIntro()) {
+      play();
+    } else {
+      window.addEventListener(INTRO_COMPLETE_EVENT, play, { once: true });
+    }
+    return () => window.removeEventListener(INTRO_COMPLETE_EVENT, play);
+  }, [reducedMotion]);
   reactExports.useLayoutEffect(() => {
     if (!sectionRef.current || reducedMotion) return;
     ensureGsap();
@@ -15330,7 +15368,7 @@ function Hero() {
       panel.id
     )) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hero__content", ref: contentRef, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "eyebrow hero__eyebrow", children: "Software Engineering Studio" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "eyebrow hero__eyebrow", ref: eyebrowRef, children: "Software Engineering Studio" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         TextReveal,
         {
@@ -15339,8 +15377,8 @@ function Hero() {
           lines: ["WE BUILD THE SYSTEMS", "BEHIND MODERN", "BUSINESS."]
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lead hero__lead", children: "From Shopify commerce to custom SaaS platforms, we design and engineer the software businesses actually need." }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "btn-group hero__actions", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lead hero__lead", ref: leadRef, children: "From Shopify commerce to custom SaaS platforms, we design and engineer the software businesses actually need." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "btn-group hero__actions", ref: actionsRef, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(MagneticButton, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: "#services", className: "btn btn--primary", children: [
           "View Our Systems",
           /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpRight, {})
@@ -15909,8 +15947,20 @@ const tabs = [
   { id: "custom", label: "Custom SaaS Systems" },
   { id: "shopify", label: "Shopify Stores We've Built" }
 ];
+const SHOPIFY_PAGE_SIZE = 6;
 function Portfolio() {
   const [tab, setTab] = reactExports.useState("custom");
+  const [shopifyPage, setShopifyPage] = reactExports.useState(0);
+  const shopifyPageCount = Math.ceil(shopifyStores.length / SHOPIFY_PAGE_SIZE);
+  const pagedStores = shopifyStores.slice(
+    shopifyPage * SHOPIFY_PAGE_SIZE,
+    shopifyPage * SHOPIFY_PAGE_SIZE + SHOPIFY_PAGE_SIZE
+  );
+  reactExports.useEffect(() => {
+    ensureGsap();
+    const id2 = requestAnimationFrame(() => ScrollTrigger.refresh());
+    return () => cancelAnimationFrame(id2);
+  }, [tab, shopifyPage]);
   return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "section portfolio", id: "work", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container portfolio__inner", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(TextReveal, { as: "h2", className: "h-1 portfolio__title", lines: ["SELECTED SYSTEMS"] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "portfolio__tabs", children: tabs.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -15940,7 +15990,7 @@ function Portfolio() {
       project.id
     )) }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lead portfolio__lead", children: "Real Shopify storefronts we've designed, built, and optimized for online, in-store, and B2B commerce." }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "shopify-showcase", children: shopifyStores.map((store, i) => {
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "shopify-showcase", children: pagedStores.map((store, i) => {
         const domain = store.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
         return /* @__PURE__ */ jsxRuntimeExports.jsx(
           ScrollReveal,
@@ -15972,7 +16022,40 @@ function Portfolio() {
           },
           store.id
         );
-      }) })
+      }) }, shopifyPage),
+      shopifyPageCount > 1 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "portfolio__pagination", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "button",
+          {
+            className: "portfolio__page-btn",
+            onClick: () => setShopifyPage((p2) => Math.max(0, p2 - 1)),
+            disabled: shopifyPage === 0,
+            "aria-label": "Previous stores",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, {}),
+              "Previous"
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "portfolio__page-indicator", children: [
+          String(shopifyPage + 1).padStart(2, "0"),
+          " / ",
+          String(shopifyPageCount).padStart(2, "0")
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "button",
+          {
+            className: "portfolio__page-btn",
+            onClick: () => setShopifyPage((p2) => Math.min(shopifyPageCount - 1, p2 + 1)),
+            disabled: shopifyPage === shopifyPageCount - 1,
+            "aria-label": "Next stores",
+            children: [
+              "Next",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, {})
+            ]
+          }
+        )
+      ] })
     ] }) }, tab)
   ] }) });
 }
@@ -34566,7 +34649,7 @@ if (typeof window !== "undefined") {
   }
 }
 const PARTICLE_COUNT = 420;
-const DOT_COLOR = "#ffd60a";
+const DOT_COLOR = "#b5544a";
 function WebGLBackground({ className }) {
   const containerRef = reactExports.useRef(null);
   const canvasRef = reactExports.useRef(null);
@@ -34592,8 +34675,7 @@ function WebGLBackground({ className }) {
       color: new Color(DOT_COLOR),
       size: 0.05,
       transparent: true,
-      opacity: 0.75,
-      blending: AdditiveBlending,
+      opacity: 0.55,
       depthWrite: false
     });
     const points = new Points(geometry, material);

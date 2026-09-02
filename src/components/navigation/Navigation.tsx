@@ -8,31 +8,26 @@ import { trackEvent } from "../../lib/analytics";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
   const [activeHref, setActiveHref] = useState<string | null>(null);
   const mobileRef = useRef<HTMLDivElement>(null);
-  const lastScrollY = useRef(0);
   const { lenis, reducedMotion } = useMotionPrefs();
 
   useEffect(() => {
-    lastScrollY.current = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 24);
-      const delta = y - lastScrollY.current;
-      if (y < 120) {
-        setHidden(false);
-      } else if (delta > 4) {
-        setHidden(true);
-      } else if (delta < -4) {
-        setHidden(false);
-      }
-      lastScrollY.current = y;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(100, Math.max(0, (y / max) * 100)) : 0);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -85,7 +80,7 @@ export function Navigation() {
 
   return (
     <>
-      <header className={`nav ${scrolled ? "is-scrolled" : ""} ${hidden && !open ? "is-hidden" : ""}`}>
+      <header className={`nav ${scrolled ? "is-scrolled" : ""}`}>
         <a href="#top" className="nav__logo" onClick={(e) => handleNavClick(e, "#top")}>
           <img src="/brand/opnexusNewLogo.png" alt="" className="nav__logo-mark" />
           OP<span>.</span>NEXUS
@@ -128,6 +123,10 @@ export function Navigation() {
             <span />
             <span />
           </button>
+        </div>
+
+        <div className="nav__progress-track" aria-hidden="true">
+          <div className="nav__progress-bar" style={{ width: `${progress}%` }} />
         </div>
       </header>
 

@@ -3,7 +3,7 @@
 
 .browser {
   position: relative;
-  background: v.$color-ink-soft;
+  background: v.$color-ink;
   border: 1px solid v.$color-border-strong;
   border-radius: v.$border-radius-lg;
   overflow: hidden;
@@ -16,7 +16,7 @@
   gap: v.$space-sm;
   padding: v.$space-sm v.$space-md;
   border-bottom: 1px solid v.$color-border;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(114, 92, 63, 0.06);
 }
 
 .browser__dots {
@@ -36,7 +36,7 @@
   font-family: v.$font-mono;
   font-size: v.$fs-2xs;
   color: v.$color-paper-faint;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(114, 92, 63, 0.08);
   border-radius: 999px;
   padding: 0.35em 1em;
 }
@@ -73,7 +73,7 @@
   align-items: center;
   gap: 6px;
   padding: v.$space-sm v.$space-md;
-  background: rgba(26, 27, 32, 0.8);
+  background: rgba(239, 232, 216, 0.85);
   backdrop-filter: blur(10px);
   border: 1px solid v.$color-border-strong;
   border-radius: v.$border-radius-md;

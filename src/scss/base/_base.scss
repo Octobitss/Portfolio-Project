@@ -7,17 +7,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: v.$color-ink;
-}
-
-::-webkit-scrollbar-thumb {
-  background: v.$color-surface;
-  border: 2px solid v.$color-ink;
-  border-radius: 999px;
+  display: none;
 }
 
 .container {

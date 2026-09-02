@@ -7,7 +7,7 @@ interface WebGLBackgroundProps {
 }
 
 const PARTICLE_COUNT = 420;
-const DOT_COLOR = "#ffd60a";
+const DOT_COLOR = "#b5544a";
 
 export function WebGLBackground({ className }: WebGLBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,8 +39,7 @@ export function WebGLBackground({ className }: WebGLBackgroundProps) {
       color: new THREE.Color(DOT_COLOR),
       size: 0.05,
       transparent: true,
-      opacity: 0.75,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.55,
       depthWrite: false,
     });
 

@@ -24,7 +24,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: v.$space-sm;
-  margin-bottom: v.$space-2xl;
+  margin-bottom: v.$space-xl;
 }
 
 .portfolio__tab {
@@ -150,4 +150,48 @@
 
 .shopify-tile__name {
   text-transform: none;
+}
+
+.portfolio__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: v.$space-lg;
+  margin-top: v.$space-2xl;
+}
+
+.portfolio__page-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-2xs;
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.8em 1.4em;
+  border-radius: 999px;
+  border: 1px solid v.$color-border-strong;
+  color: v.$color-paper;
+  transition: border-color v.$duration-fast v.$ease-out-quart, opacity v.$duration-fast v.$ease-out-quart;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: v.$color-accent;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+}
+
+.portfolio__page-indicator {
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  letter-spacing: 0.08em;
+  color: v.$color-paper-faint;
 }

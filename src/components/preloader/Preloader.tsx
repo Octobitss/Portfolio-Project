@@ -4,8 +4,18 @@ import { gsap, ensureGsap } from "../../lib/gsap";
 import { PreloaderMark } from "./PreloaderMark";
 
 const SEEN_KEY = "opnexus-intro-seen";
+export const INTRO_COMPLETE_EVENT = "opnexus:intro-complete";
 const NAME_CHARS = ["O", "P", ".", "N", "E", "X", "U", "S"] as const;
 const DOT_INDEX = NAME_CHARS.indexOf(".");
+
+export function hasSeenIntro() {
+  if (typeof window === "undefined") return true;
+  try {
+    return window.sessionStorage.getItem(SEEN_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
 
 // Mirrors the project's own $ease-out-quart / $ease-in-out-quart tokens
 // (src/scss/abstracts/_variables.scss) so the intro shares the site's motion language.
@@ -21,15 +31,6 @@ const TIMING = {
   fade: 0.32,
   collapse: 0.75,
 };
-
-function hasSeenIntro() {
-  if (typeof window === "undefined") return true;
-  try {
-    return window.sessionStorage.getItem(SEEN_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
 
 export function Preloader() {
   const [active, setActive] = useState(() => !hasSeenIntro());
@@ -64,6 +65,7 @@ export function Preloader() {
         /* storage unavailable (private browsing) — intro simply replays next time */
       }
       setActive(false);
+      window.dispatchEvent(new Event(INTRO_COMPLETE_EVENT));
     };
 
     // Belt-and-suspenders: the intro must never be able to strand a visitor
