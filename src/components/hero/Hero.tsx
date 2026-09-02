@@ -184,6 +184,8 @@ export function Hero() {
       const baseLeft = window.innerWidth / 2 - endWidth / 2;
       const baseTop = window.innerHeight / 2 - endHeight / 2;
       const assembleGap = endWidth * 0.18;
+      const NAV_HEIGHT = 96;
+      const HEADER_FADE_ZONE = 120;
 
       ctx = gsap.context(() => {
         gsap.set(logo, {
@@ -340,7 +342,9 @@ export function Hero() {
                 top = glowRect.top + glowRect.height / 2 - endHeight / 2;
                 left = glowRect.left + glowRect.width / 2 - endWidth / 2;
               }
-              gsap.set(logo, { top, left, width: endWidth, height: endHeight, opacity: 0.4 });
+              const headerClearance = top - NAV_HEIGHT;
+              const headerFade = gsap.utils.clamp(0, 1, headerClearance / HEADER_FADE_ZONE);
+              gsap.set(logo, { top, left, width: endWidth, height: endHeight, opacity: 0.4 * headerFade });
               const servicesSpan = crossfadeEnd - heroEnd;
               const servicesP = servicesSpan > 0 ? gsap.utils.clamp(0, 1, (scrollPos - heroEnd) / servicesSpan) : 1;
               const rawIndex = servicesP * totalSlides;
