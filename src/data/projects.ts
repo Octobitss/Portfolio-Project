@@ -20,7 +20,7 @@ export const projects: Project[] = [
     description: "A team task and project management platform for organizing sprints and tracking workflow progress.",
     visual: "screenshot",
     url: "https://taskmasteropnexus.xyz/",
-    screenshot: "/portfolio/taskmaster-dashboard.jpg",
+    screenshot: "/portfolio/taskmaster-dashboard.webp",
   },
   {
     id: "pos-system",
@@ -30,7 +30,7 @@ export const projects: Project[] = [
     technology: ["React", "Node.js", "Express", "MongoDB"],
     description: "A multi-branch point-of-sale system covering inventory, staff, VIP customers, and real-time sales performance.",
     visual: "screenshot",
-    screenshot: "/portfolio/pos-system.jpg",
+    screenshot: "/portfolio/pos-system.webp",
   },
   {
     id: "queueing-system",

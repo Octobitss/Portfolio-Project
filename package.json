@@ -15,7 +15,6 @@
     "js:watch": "node scripts/build-js.mjs --watch"
   },
   "dependencies": {
-    "@gsap/react": "^2.1.1",
     "gsap": "^3.12.7",
     "lenis": "^1.1.20",
     "lucide-react": "^0.462.0",

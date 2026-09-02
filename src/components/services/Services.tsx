@@ -85,13 +85,6 @@ export function Services() {
         }
       });
 
-      // gsap.timeline({ scrollTrigger }) maps self.progress (0..1) onto this
-      // timeline's OWN duration — which GSAP would otherwise auto-compute as
-      // just past the last crossfade (TOTAL - CROSS_OFFSET), not TOTAL. Every
-      // consumer of self.progress (the dot indicator above, the settle logic
-      // below, and Hero's logo-face timeline) assumes an even 0..TOTAL spread,
-      // so left alone every crossfade would land earlier than they expect and
-      // drift out of sync with what's actually on screen.
       tl.set({}, {}, TOTAL);
 
       triggerRef.current = tl.scrollTrigger;
@@ -104,18 +97,9 @@ export function Services() {
     };
   }, [reducedMotion]);
 
-  // Separate from the GSAP/pin setup above so that `lenis` becoming available
-  // shortly after mount (see SmoothScrollProvider) only attaches this listener,
-  // instead of re-running the effect above and tearing down/rebuilding the pin.
   useEffect(() => {
     if (reducedMotion || !lenis) return;
 
-    // If scrolling stops while genuinely mid-crossfade (both slides partially
-    // visible), nudge forward to finish that one transition — via Lenis's own
-    // scrollTo, not GSAP ScrollTrigger's built-in `snap`, which fights Lenis's
-    // smoothing (both try to drive the same scroll position) and stalls short
-    // of the target. Anywhere else — including just resting inside a slide's
-    // own steady window — is left completely alone.
     let settleTimer: ReturnType<typeof setTimeout> | null = null;
     const scheduleSettle = () => {
       if (settleTimer) clearTimeout(settleTimer);
@@ -132,10 +116,6 @@ export function Services() {
           const windowStart = i - CROSS_OFFSET;
           const windowEnd = i + CROSS_OFFSET;
           if (rawIndex > windowStart && rawIndex < windowEnd) {
-            // Finish whichever side of the crossfade is closer, rather than
-            // always pushing forward — otherwise scrolling *up* into a window
-            // gets shoved back into the slide being left instead of settling
-            // back onto the one behind it.
             const targetIndex = rawIndex < i ? windowStart : windowEnd;
             const targetY = trigger.start + (targetIndex / services.length) * span;
             lenis.scrollTo(targetY, { duration: 0.4, easing: (t: number) => 1 - Math.pow(1 - t, 3) });
@@ -156,7 +136,7 @@ export function Services() {
     <section className="section services" ref={sectionRef} id="services">
       <div className="services__glow" ref={glowRef}>
         {reducedMotion && (
-          <img src="/brand/opnexusNewLogo.png" alt="" aria-hidden="true" className="services__glow-mark" />
+          <img src="/brand/opnexusNewLogo.webp" alt="" aria-hidden="true" className="services__glow-mark" />
         )}
       </div>
       <div className="container services__frame">

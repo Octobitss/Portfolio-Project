@@ -93,17 +93,6 @@
   }
 }
 
-.pos-mockup {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: v.$space-md;
-  height: 100%;
-
-  @include respond-down(md) {
-    grid-template-columns: 1fr;
-  }
-}
-
 .pos-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -123,33 +112,6 @@
     background: v.$color-accent-dim;
     color: v.$color-paper;
   }
-}
-
-.pos-cart {
-  @include hairline-border;
-  border-radius: v.$border-radius-sm;
-  padding: v.$space-sm;
-  display: flex;
-  flex-direction: column;
-  gap: v.$space-2xs;
-  font-family: v.$font-mono;
-  font-size: v.$fs-2xs;
-}
-
-.pos-cart__row {
-  display: flex;
-  justify-content: space-between;
-  color: v.$color-paper-dim;
-}
-
-.pos-cart__total {
-  display: flex;
-  justify-content: space-between;
-  padding-top: v.$space-2xs;
-  margin-top: v.$space-2xs;
-  border-top: 1px solid v.$color-border;
-  color: v.$color-paper;
-  font-weight: 600;
 }
 
 .kanban {

@@ -17,8 +17,6 @@ export function hasSeenIntro() {
   }
 }
 
-// Mirrors the project's own $ease-out-quart / $ease-in-out-quart tokens
-// (src/scss/abstracts/_variables.scss) so the intro shares the site's motion language.
 const EASE_OUT = "cubic-bezier(0.25, 1, 0.5, 1)";
 const EASE_IN_OUT = "cubic-bezier(0.76, 0, 0.24, 1)";
 
@@ -61,15 +59,11 @@ export function Preloader() {
       rootApp?.removeAttribute("inert");
       try {
         window.sessionStorage.setItem(SEEN_KEY, "1");
-      } catch {
-        /* storage unavailable (private browsing) — intro simply replays next time */
-      }
+      } catch {}
       setActive(false);
       window.dispatchEvent(new Event(INTRO_COMPLETE_EVENT));
     };
 
-    // Belt-and-suspenders: the intro must never be able to strand a visitor
-    // behind a full-screen overlay if a tween or ref fails to resolve.
     const fallback = window.setTimeout(finish, 4500);
 
     ensureGsap();

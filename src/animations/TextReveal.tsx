@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, type CSSProperties } from "react";
-import { gsap, ScrollTrigger, ensureGsap } from "../lib/gsap";
+import { gsap, ensureGsap } from "../lib/gsap";
 import { useMotionPrefs } from "../lib/SmoothScrollProvider";
 
 interface TextRevealProps {

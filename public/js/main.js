@@ -14884,7 +14884,7 @@ function Navigation() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: `nav ${scrolled ? "is-scrolled" : ""}`, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: "#top", className: "nav__logo", onClick: (e) => handleNavClick(e, "#top"), children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/brand/opnexusNewLogo.png", alt: "", className: "nav__logo-mark" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/brand/opnexusNewLogo.webp", alt: "", className: "nav__logo-mark" }),
         "OP",
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "." }),
         "NEXUS"
@@ -15395,7 +15395,7 @@ function Hero() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "img",
           {
-            src: "/brand/opnexusNewLogo.png",
+            src: "/brand/opnexusNewLogo.webp",
             alt: "",
             "aria-hidden": "true",
             className: "brand-travel-logo__face brand-travel-logo__face--brand",
@@ -15411,7 +15411,7 @@ function Hero() {
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "img",
                 {
-                  src: "/brand/shopify-logo.png",
+                  src: "/brand/shopify-logo.webp",
                   alt: "",
                   "aria-hidden": "true",
                   className: "brand-travel-logo__shopify-item",
@@ -15421,7 +15421,7 @@ function Hero() {
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "img",
                 {
-                  src: "/brand/recharge.png",
+                  src: "/brand/recharge.webp",
                   alt: "",
                   "aria-hidden": "true",
                   className: "brand-travel-logo__shopify-item",
@@ -15431,7 +15431,7 @@ function Hero() {
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "img",
                 {
-                  src: "/brand/klaviyo-logo.png",
+                  src: "/brand/klaviyo-logo.webp",
                   alt: "",
                   "aria-hidden": "true",
                   className: "brand-travel-logo__shopify-item",
@@ -15446,7 +15446,7 @@ function Hero() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "img",
             {
-              src: "/brand/springboot-logo.png",
+              src: "/brand/springboot-logo.webp",
               alt: "",
               "aria-hidden": "true",
               className: "brand-travel-logo__react-item",
@@ -15458,7 +15458,7 @@ function Hero() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "img",
             {
-              src: "/brand/customLogo.png",
+              src: "/brand/customLogo.webp",
               alt: "",
               "aria-hidden": "true",
               className: "brand-travel-logo__custom-half brand-travel-logo__custom-half--top",
@@ -15468,7 +15468,7 @@ function Hero() {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "img",
             {
-              src: "/brand/customLogo.png",
+              src: "/brand/customLogo.webp",
               alt: "",
               "aria-hidden": "true",
               className: "brand-travel-logo__custom-half brand-travel-logo__custom-half--bottom",
@@ -15650,7 +15650,7 @@ function Services() {
     };
   }, [reducedMotion, lenis]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "section services", ref: sectionRef, id: "services", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "services__glow", ref: glowRef, children: reducedMotion && /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/brand/opnexusNewLogo.png", alt: "", "aria-hidden": "true", className: "services__glow-mark" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "services__glow", ref: glowRef, children: reducedMotion && /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/brand/opnexusNewLogo.webp", alt: "", "aria-hidden": "true", className: "services__glow-mark" }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "container services__frame", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "services__header", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "eyebrow", children: "What We Build" }),
@@ -15689,7 +15689,7 @@ const projects = [
     description: "A team task and project management platform for organizing sprints and tracking workflow progress.",
     visual: "screenshot",
     url: "https://taskmasteropnexus.xyz/",
-    screenshot: "/portfolio/taskmaster-dashboard.jpg"
+    screenshot: "/portfolio/taskmaster-dashboard.webp"
   },
   {
     id: "pos-system",
@@ -15699,7 +15699,7 @@ const projects = [
     technology: ["React", "Node.js", "Express", "MongoDB"],
     description: "A multi-branch point-of-sale system covering inventory, staff, VIP customers, and real-time sales performance.",
     visual: "screenshot",
-    screenshot: "/portfolio/pos-system.jpg"
+    screenshot: "/portfolio/pos-system.webp"
   },
   {
     id: "queueing-system",
@@ -15717,70 +15717,70 @@ const shopifyStores = [
     name: "Arte Sari",
     url: "https://artesari.com/",
     description: "A Shopify storefront for Filipino-artisan jewelry, accessories, and home goods.",
-    screenshot: "/portfolio/artesari.jpg"
+    screenshot: "/portfolio/artesari.webp"
   },
   {
     id: "showponyaus",
     name: "Showpony",
     url: "https://www.showponyaus.com.au/",
     description: "A Shopify storefront for an Australian hair-extensions brand serving consumers and salon accounts.",
-    screenshot: "/portfolio/showponyaus.jpg"
+    screenshot: "/portfolio/showponyaus.webp"
   },
   {
     id: "wonderslumber",
     name: "Wonder Slumber",
     url: "https://wonderslumber.com/",
     description: "A Shopify storefront for a sleep-focused DTC brand selling pillows and sleep-comfort products.",
-    screenshot: "/portfolio/wonderslumber.jpg"
+    screenshot: "/portfolio/wonderslumber.webp"
   },
   {
     id: "utvwarehouse",
     name: "UTV Warehouse",
     url: "https://utvwarehouse.com/",
     description: "A Shopify catalog for UTV, ATV, and motocross parts, helmets, and apparel.",
-    screenshot: "/portfolio/utvwarehouse.jpg"
+    screenshot: "/portfolio/utvwarehouse.webp"
   },
   {
     id: "bevyscripts",
     name: "Hairscripts by Bevy",
     url: "https://bevyscripts.com/",
     description: "A Shopify subscription storefront for a single-product hair-growth supplement brand.",
-    screenshot: "/portfolio/bevyscripts.jpg"
+    screenshot: "/portfolio/bevyscripts.webp"
   },
   {
     id: "suprasports",
     name: "SupraSports",
     url: "https://suprasports.net/",
     description: "A Shopify storefront for a women's activewear brand selling sports bras, tops, and bottoms.",
-    screenshot: "/portfolio/suprasports.jpg"
+    screenshot: "/portfolio/suprasports.webp"
   },
   {
     id: "theslimfairshop",
     name: "Slimfair",
     url: "https://theslimfairshop.com/",
     description: "A Shopify storefront for collagen- and glutathione-infused functional coffee and latte blends.",
-    screenshot: "/portfolio/theslimfairshop.jpg"
+    screenshot: "/portfolio/theslimfairshop.webp"
   },
   {
     id: "shoc",
     name: "SHOC",
     url: "https://shoc.com/",
     description: "A Shopify storefront for anti-fog helmet visors and eye shades across multiple sports.",
-    screenshot: "/portfolio/shoc.jpg"
+    screenshot: "/portfolio/shoc.webp"
   },
   {
     id: "roadarmor",
     name: "Road Armor",
     url: "https://roadarmor.com/",
     description: "A Shopify storefront for American-made steel bumpers and off-road truck accessories.",
-    screenshot: "/portfolio/roadarmor.jpg"
+    screenshot: "/portfolio/roadarmor.webp"
   },
   {
     id: "voomie",
     name: "Voomie",
     url: "https://voomie.com/",
     description: "A Shopify storefront for an Australian supplement brand selling focus, energy, and sleep formulas.",
-    screenshot: "/portfolio/voomie.jpg"
+    screenshot: "/portfolio/voomie.webp"
   }
 ];
 function ScrollReveal({

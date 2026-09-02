@@ -27,11 +27,6 @@ export function Portfolio() {
     shopifyPage * SHOPIFY_PAGE_SIZE + SHOPIFY_PAGE_SIZE
   );
 
-  // Switching tabs (or pages) swaps in a differently-sized DOM subtree, which
-  // changes this section's height without GSAP knowing — every ScrollTrigger
-  // pinned below it (Custom Systems in particular) is left holding stale
-  // start/end offsets until something tells it to remeasure. Deferred a frame
-  // so the new layout has actually committed before we measure it.
   useEffect(() => {
     ensureGsap();
     const id = requestAnimationFrame(() => ScrollTrigger.refresh());

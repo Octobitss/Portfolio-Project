@@ -82,7 +82,7 @@ export function Navigation() {
     <>
       <header className={`nav ${scrolled ? "is-scrolled" : ""}`}>
         <a href="#top" className="nav__logo" onClick={(e) => handleNavClick(e, "#top")}>
-          <img src="/brand/opnexusNewLogo.png" alt="" className="nav__logo-mark" />
+          <img src="/brand/opnexusNewLogo.webp" alt="" className="nav__logo-mark" />
           OP<span>.</span>NEXUS
         </a>
 

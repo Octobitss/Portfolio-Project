@@ -55,12 +55,6 @@ export function Hero() {
     gsap.set(panelRefs.current.filter(Boolean), { xPercent: -50, yPercent: -50 });
   }, []);
 
-  // First-load entrance: the headline reveals itself via TextReveal's own
-  // scroll trigger (already in view at progress ~0, so it fires immediately),
-  // but the rest of the hero previously just appeared with no motion at all.
-  // Staggering these in — timed to start only once the preloader intro (if
-  // playing this session) has actually cleared, so it isn't wasted underneath
-  // the opaque overlay — makes the first paint read as considerably livelier.
   useLayoutEffect(() => {
     if (reducedMotion) return;
     ensureGsap();
@@ -174,11 +168,6 @@ export function Hero() {
     let ctx: gsap.Context | undefined;
     let rafId: number;
 
-    // The logo never moves in the DOM — it stays fixed-position, portaled to <body>,
-    // for its whole life. Past the hero, instead of re-parenting it into .services__glow
-    // (which, empirically, causes React to recreate the node on each container change and
-    // wipe every GSAP-applied inline style), we just add the glow's own live transform to
-    // its base position each frame, so it visually tracks the glow without ever moving house.
     const build = () => {
       ctx?.revert();
 
@@ -187,18 +176,6 @@ export function Hero() {
 
       const heroEnd = servicesEl.getBoundingClientRect().top + window.scrollY;
       const totalSlides = services.length;
-      // Two different "ends" matter here, and they're not the same point:
-      // - crossfadeEnd is where Services' own pin releases (totalSlides * 100% of
-      //   its 100vh trigger). The shopify/react/custom crossfades all happen
-      //   *within* this pinned span, so rawIndex must be measured against it —
-      //   using the later position below here would lag the logo behind the
-      //   slide content it's supposed to track.
-      // - combinedEnd is where the next section (#work) actually arrives.
-      //   After the pin releases, the now-unpinned Services section still has to
-      //   scroll normally out of view (one more full viewport) before that
-      //   happens — the logo should stay visible through that stretch too, so
-      //   the wrapper's own visibility cutoff has to use this later position,
-      //   not crossfadeEnd.
       const crossfadeEnd = heroEnd + totalSlides * window.innerHeight;
       const combinedEnd = afterServicesEl.getBoundingClientRect().top + window.scrollY;
       const aspect = startRect.height / startRect.width;
@@ -221,10 +198,6 @@ export function Hero() {
           opacity: 0.16,
         });
 
-        // Resting states for every logo face. Only one is fully opaque at a time —
-        // entryTl and facesTl below cross-fade between them as the two faces they
-        // share (shopify) always agree at the handoff, so switching which timeline
-        // drives a given frame never causes a visible jump.
         gsap.set(brandFace, { opacity: 1, rotate: 0, scale: 1 });
         gsap.set([shopifyFace, reactFace, customFace], { opacity: 0, rotate: 0, scale: 0.6 });
         gsap.set([customTop, customBottom], { y: 0 });
@@ -233,7 +206,6 @@ export function Hero() {
         gsap.set(reactItem, { opacity: 1, rotate: 0, scale: 1 });
         gsap.set(springbootItem, { opacity: 0, rotate: 0, scale: 0.6 });
 
-        // Brand mark -> Shopify mark, spinning, over the hero-exit travel (p: 0..1).
         const entryTl = gsap.timeline({ paused: true });
         entryTl.to(brandFace, { opacity: 0, rotate: -170, scale: 0.6, ease: "power1.in", duration: 1 }, 0);
         entryTl.fromTo(
@@ -243,10 +215,6 @@ export function Hero() {
           0
         );
 
-        // Shopify -> React -> Custom, spinning at each slide boundary, then the
-        // custom mark's two halves snap together once its spin-in has settled.
-        // Driven directly in "slide index" units (rawIndex), matching Services.tsx's
-        // own slide math so the logo swap lines up with each slide crossfade.
         const CROSS_W = 0.36;
         const CROSS_OFFSET = 0.18;
         const ASSEMBLE_W = 0.3;
@@ -275,11 +243,6 @@ export function Hero() {
         facesTl.to(customTop, { y: 0, ease: "power2.out", duration: ASSEMBLE_W }, assembleStart);
         facesTl.to(customBottom, { y: 0, ease: "power2.out", duration: ASSEMBLE_W }, assembleStart);
 
-        // While the visitor is resting on the Shopify slide, cycle its logo through the
-        // Shopify-ecosystem stack on a real-time loop (not scroll-linked) — Shopify ->
-        // Recharge -> Klaviyo -> back to Shopify. Runs only while shopifyFace itself is
-        // the steady, fully-settled face (see the play/pause/reset below), so it always
-        // starts and ends on the plain Shopify mark, matching what entryTl/facesTl expect.
         const HOLD = 1.4;
         const SPIN = 0.55;
         const shopifyTickerTl = gsap.timeline({ paused: true, repeat: -1 });
@@ -301,9 +264,6 @@ export function Hero() {
         );
         tickerT += SPIN + HOLD;
         shopifyTickerTl.to(klaviyoItem, { opacity: 0, rotate: -170, scale: 0.6, ease: "power1.in", duration: SPIN }, tickerT);
-        // This one's "from" (opacity 0) would otherwise stomp shopifyItem's real resting
-        // opacity (1) the instant the timeline is built, since fromTo renders its start
-        // state immediately by default regardless of its position later in the timeline.
         shopifyTickerTl.fromTo(
           shopifyItem,
           { opacity: 0, rotate: 170, scale: 0.6 },
@@ -319,8 +279,6 @@ export function Hero() {
           else shopifyTickerTl.pause(0);
         };
 
-        // Same idea, for the React slide: React <-> SpringBoot (part of its own
-        // stack), while resting on that slide only.
         const reactTickerTl = gsap.timeline({ paused: true, repeat: -1 });
         let reactTickerT = HOLD;
         reactTickerTl.to(reactItem, { opacity: 0, rotate: -170, scale: 0.6, ease: "power1.in", duration: SPIN }, reactTickerT);
@@ -353,9 +311,6 @@ export function Hero() {
           scrub: true,
           onUpdate: (self) => {
             const scrollPos = self.progress * combinedEnd;
-            // Always driven (not just while still in the hero) so it reaches exactly
-            // progress 1 once we're past heroEnd, instead of freezing a hair short of
-            // it and leaving a faint brand-mark ghost behind the later faces.
             const p = heroEnd > 0 ? gsap.utils.clamp(0, 1, scrollPos / heroEnd) : 1;
             entryTl.progress(p);
             if (scrollPos <= heroEnd) {
@@ -369,8 +324,6 @@ export function Hero() {
               setTickerActive(false);
               setReactTickerActive(false);
             } else if (scrollPos >= combinedEnd) {
-              // Services (and its glow) is done and scrolled away — cut instantly rather
-              // than fading, so the logo never lingers on top of the next section.
               gsap.set(logo, { opacity: 0 });
               setTickerActive(false);
               setReactTickerActive(false);
@@ -378,19 +331,11 @@ export function Hero() {
               let top: number;
               let left: number;
               if (scrollPos <= crossfadeEnd) {
-                // Still pinned: the glow's screen position is fixed (base) plus
-                // only its own live drift transform between slides.
                 const glowX = (gsap.getProperty(glowEl, "x") as number) || 0;
                 const glowY = (gsap.getProperty(glowEl, "y") as number) || 0;
                 top = baseTop + glowY;
                 left = baseLeft + glowX;
               } else {
-                // Past the pin: Services is unpinned and scrolling away normally,
-                // so the glow's on-screen position now changes with scroll too —
-                // the base+drift shortcut above no longer accounts for that, so
-                // track the glow's real rect directly here instead. This is the
-                // only branch where that's worth the extra layout read, since the
-                // rest of the range doesn't need it.
                 const glowRect = glowEl.getBoundingClientRect();
                 top = glowRect.top + glowRect.height / 2 - endHeight / 2;
                 left = glowRect.left + glowRect.width / 2 - endWidth / 2;
@@ -408,8 +353,6 @@ export function Hero() {
       });
     };
 
-    // Deferred one frame so Services' own pin (a sibling component, mounted after this
-    // one) has already inserted its pin-spacer by the time we measure distances past it.
     rafId = requestAnimationFrame(build);
 
     const onResize = () => {
@@ -481,7 +424,7 @@ export function Hero() {
       {createPortal(
         <div className="brand-travel-logo" ref={logoWrapRef}>
           <img
-            src="/brand/opnexusNewLogo.png"
+            src="/brand/opnexusNewLogo.webp"
             alt=""
             aria-hidden="true"
             className="brand-travel-logo__face brand-travel-logo__face--brand"
@@ -492,21 +435,21 @@ export function Hero() {
             ref={shopifyFaceRef}
           >
             <img
-              src="/brand/shopify-logo.png"
+              src="/brand/shopify-logo.webp"
               alt=""
               aria-hidden="true"
               className="brand-travel-logo__shopify-item"
               ref={shopifyItemRef}
             />
             <img
-              src="/brand/recharge.png"
+              src="/brand/recharge.webp"
               alt=""
               aria-hidden="true"
               className="brand-travel-logo__shopify-item"
               ref={rechargeItemRef}
             />
             <img
-              src="/brand/klaviyo-logo.png"
+              src="/brand/klaviyo-logo.webp"
               alt=""
               aria-hidden="true"
               className="brand-travel-logo__shopify-item"
@@ -516,7 +459,7 @@ export function Hero() {
           <div className="brand-travel-logo__face brand-travel-logo__face--react" ref={reactFaceRef}>
             <ReactMark className="brand-travel-logo__react-item" ref={reactItemRef} />
             <img
-              src="/brand/springboot-logo.png"
+              src="/brand/springboot-logo.webp"
               alt=""
               aria-hidden="true"
               className="brand-travel-logo__react-item"
@@ -525,14 +468,14 @@ export function Hero() {
           </div>
           <div className="brand-travel-logo__face brand-travel-logo__face--custom" ref={customFaceRef}>
             <img
-              src="/brand/customLogo.png"
+              src="/brand/customLogo.webp"
               alt=""
               aria-hidden="true"
               className="brand-travel-logo__custom-half brand-travel-logo__custom-half--top"
               ref={customTopRef}
             />
             <img
-              src="/brand/customLogo.png"
+              src="/brand/customLogo.webp"
               alt=""
               aria-hidden="true"
               className="brand-travel-logo__custom-half brand-travel-logo__custom-half--bottom"

@@ -7,9 +7,6 @@ interface PreloaderMarkProps {
   nodeRef: RefObject<SVGCircleElement>;
 }
 
-// Traces the same open-ring / orbiting-node / core-dot motif as
-// /brand/opnexusNewLogo.png, but as real paths so the ring can be
-// stroke-drawn and the node can animate independently of the mark.
 const RING_PATH = "M79.54 44.79 A30 30 0 1 1 60.26 21.81";
 
 export function PreloaderMark({ className, dotRef, ringRef, nodeRef }: PreloaderMarkProps) {
