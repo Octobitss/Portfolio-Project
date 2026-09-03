@@ -71,7 +71,7 @@ body {
   font-family: "Arvo", ui-serif, Georgia, serif;
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   font-weight: 400;
-  color: #725c3f;
+  color: #000000;
   background: #efe8d8;
 }
 
