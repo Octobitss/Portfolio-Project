@@ -6,7 +6,7 @@ interface WebGLBackgroundProps {
   className?: string;
 }
 
-const PARTICLE_COUNT = 420;
+const PARTICLE_COUNT = 120;
 const DOT_COLOR = "#b5544a";
 
 export function WebGLBackground({ className }: WebGLBackgroundProps) {

@@ -34652,7 +34652,7 @@ if (typeof window !== "undefined") {
     window.__THREE__ = REVISION;
   }
 }
-const PARTICLE_COUNT = 420;
+const PARTICLE_COUNT = 100;
 const DOT_COLOR = "#b5544a";
 function WebGLBackground({ className }) {
   const containerRef = reactExports.useRef(null);
