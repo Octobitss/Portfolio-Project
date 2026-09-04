@@ -30,6 +30,7 @@ export const projects: Project[] = [
     technology: ["React", "Node.js", "Express", "MongoDB"],
     description: "A multi-branch point-of-sale system covering inventory, staff, VIP customers, and real-time sales performance.",
     visual: "screenshot",
+    url: "https://opnexus-pos-system.onrender.com/login",
     screenshot: "/portfolio/pos-system.webp",
   },
   {

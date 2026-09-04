@@ -15703,6 +15703,7 @@ const projects = [
     technology: ["React", "Node.js", "Express", "MongoDB"],
     description: "A multi-branch point-of-sale system covering inventory, staff, VIP customers, and real-time sales performance.",
     visual: "screenshot",
+    url: "https://opnexus-pos-system.onrender.com/login",
     screenshot: "/portfolio/pos-system.webp"
   },
   {
@@ -34652,7 +34653,7 @@ if (typeof window !== "undefined") {
     window.__THREE__ = REVISION;
   }
 }
-const PARTICLE_COUNT = 100;
+const PARTICLE_COUNT = 120;
 const DOT_COLOR = "#b5544a";
 function WebGLBackground({ className }) {
   const containerRef = reactExports.useRef(null);
